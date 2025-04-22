@@ -1,10 +1,11 @@
 import "./App.css";
 import Footer from "./Footer";
+import BarraLateral from "./BarraLateral";
 
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold">Hello world!</h1>
+      <BarraLateral />
       <Footer />
     </>
   );
