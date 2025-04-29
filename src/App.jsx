@@ -4,18 +4,23 @@ import Footer from "./Footer";
 import BarraLateral from "./BarraLateral";
 import TelaPrincipal from "./TelaPrincipal";
 import Login from "./pages/Login";
+import Horario from "./pages/Horario.jsx";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/horario" element={<Horario />} />
         <Route
           path="*"
           element={
-            <div className="flex h-screen">
-              <TelaPrincipal />
-              <BarraLateral />
+            <div>
+              <div className="flex">
+                <TelaPrincipal />
+                <BarraLateral />
+              </div>
+              <Footer />
             </div>
           }
         />
