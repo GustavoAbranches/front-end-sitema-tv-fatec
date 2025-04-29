@@ -1,22 +1,31 @@
 export default function BarraLateral() {
   return (
-    <div className="w-[30%] h-full flex flex-col justify-between bg-blue-950 text-white">
-      <div className="p-4">
-        <div className="bg-gradient-to-br from-red-500 to-amber-400 p-[6px]">
-          <div className="bg-white w-full h-48" />
-        </div>
+    <div className="relative h-full flex">
+      <div className="flex flex-row h-full">
+        <div className="w-[20px] h-full bg-red-600" />
+        <div className="w-[20px] h-full bg-orange-500" />
+        <div className="w-[20px] h-full bg-yellow-400" />
       </div>
 
-      <div className="p-4">
-        <div className="bg-amber-400 text-center text-[#00224D] py-2 px-1 mb-4">
-          <p className="text-sm font-bold">03.02</p>
-          <p className="text-sm font-bold">Aniversário</p>
-          <p className="text-sm font-bold">FATEC Carapicuíba</p>
-          <p className="text-sm font-bold">Parabéns!</p>
+      <div className="w-[30vw] h-full flex flex-col justify-between bg-blue-950 text-white">
+        <div className="p-4">
+          <div className="bg-gradient-to-br from-red-500 to-amber-400 p-[6px]">
+            <div className="bg-white w-full h-48" />
+          </div>
         </div>
-      </div>
-      <div className="flex justify-center h-96 object-cover">
-        <img src="../src/images/fatec-logo.png" alt="Fatec Carapicuíba" />
+
+        <div className="p-4">
+          <div className="bg-amber-400 text-center text-[#00224D] py-2 px-1 mb-4">
+            <p className="text-sm font-bold">03.02</p>
+            <p className="text-sm font-bold">Aniversário</p>
+            <p className="text-sm font-bold">FATEC Carapicuíba</p>
+            <p className="text-sm font-bold">Parabéns!</p>
+          </div>
+        </div>
+
+        <div className="flex justify-center h-96 object-cover">
+          <img src="../src/images/fatec-logo.png" alt="Fatec Carapicuíba" />
+        </div>
       </div>
     </div>
   );
