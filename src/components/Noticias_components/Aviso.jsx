@@ -1,8 +1,8 @@
 export default function Aviso() {
   return (
     <div
-      className="w-full px-6 py-6 text-white bg-cover bg-center relative"
-      style={{ backgroundImage: "url('/src/images/Fatec.jpg')" }}
+      className="w-full h-[140px] px-6 py-6 text-white bg-cover bg-center relative"
+      style={{ backgroundImage: "url('/src/assets/Fatec.jpg')" }}
     >
       <div className="absolute inset-0 bg-blue-950 bg-opacity-90" />
       <div className="relative z-10">

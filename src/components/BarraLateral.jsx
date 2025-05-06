@@ -1,15 +1,9 @@
 export default function BarraLateral() {
   return (
     <div className="relative h-full flex">
-      <div className="flex flex-row h-full">
-        <div className="w-[20px] h-full bg-red-600" />
-        <div className="w-[20px] h-full bg-orange-500" />
-        <div className="w-[20px] h-full bg-yellow-400" />
-      </div>
-
       <div
         className="relative w-[30vw] h-[570px] flex flex-col justify-between text-white bg-cover bg-center"
-        style={{ backgroundImage: "url('/src/images/fatec-arcos.jpg')" }}
+        style={{ backgroundImage: "url('/src/assets/fatec-arcos.jpg')" }}
       >
         <div className="absolute inset-0 bg-blue-950 bg-opacity-90" />
 

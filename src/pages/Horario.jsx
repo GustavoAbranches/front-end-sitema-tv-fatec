@@ -6,7 +6,7 @@ const Horario = () => {
   return (
     <div>
       <div className="bg-blue-900 w-full h-8"></div>
-      <div className="flex justify-end items-end">
+      <div className="flex">
         <Sidediv />
         <HorarioQuadro />
       </div>

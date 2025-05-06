@@ -3,7 +3,10 @@ import BarraLateral from "./components/BarraLateral";
 import TelaPrincipal from "./pages/TelaPrincipal";
 import Login from "./pages/Login";
 import Horario from "./pages/Horario";
-import Footer from "./components/Footer"; // Certifique-se de importar o Footer
+
+import Aviso from "./components/Noticias_components/Aviso.jsx";
+import Footer from "./components/Footer";
+import DivSection from "./components/DivSection.jsx";
 
 function App() {
   return (
@@ -15,8 +18,12 @@ function App() {
           path="*"
           element={
             <div className="flex h-screen flex-col">
-              <div className="flex flex-1">
-                <TelaPrincipal />
+              <div className="flex">
+                <div className="w-screen">
+                  <TelaPrincipal />
+                  <Aviso />
+                </div>
+                <DivSection />
                 <BarraLateral />
               </div>
               <Footer /> {/* Adicionando o Footer aqui */}
