@@ -4,7 +4,7 @@ import Clima from "./Footer_components/Clima.jsx";
 
 const Footer = () => {
   return (
-    <div className="w-full h-16 flex">
+    <div className="absolute bottom-0 w-full h-16 flex">
       <Data />
       <Hora />
       <Clima day={0} text={"Hoje"} />
