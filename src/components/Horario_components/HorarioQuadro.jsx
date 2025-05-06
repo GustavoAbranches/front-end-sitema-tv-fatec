@@ -3,7 +3,7 @@ const HorarioQuadro = () => {
     <div className="h-[540px] w-[1150px]">
       <div className="flex items-center h-16">
         <span className="font-bold mr-16 text-6xl text-gray-500">ADS</span>
-        <span className="font-bold text-3xl text-gray-500">
+        <span className="pl-40 font-bold text-3xl text-gray-500">
           Analise e desenvolvimento de Sistemas
         </span>
       </div>

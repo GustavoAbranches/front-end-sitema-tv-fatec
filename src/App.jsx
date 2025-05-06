@@ -1,8 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Footer from "./Footer";
-import BarraLateral from "./BarraLateral";
-import TelaPrincipal from "./TelaPrincipal";
+import Footer from "./components/Footer.jsx";
+import BarraLateral from "./components/BarraLateral";
+import TelaPrincipal from "./pages/TelaPrincipal";
 import Login from "./pages/Login";
 import Horario from "./pages/Horario.jsx";
 
