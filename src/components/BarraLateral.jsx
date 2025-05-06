@@ -12,7 +12,7 @@ export default function BarraLateral() {
         style={{ backgroundImage: "url('/src/images/fatec-arcos.jpg')" }}
       >
         <div className="absolute inset-0 bg-blue-950 bg-opacity-90" />
-        
+
         <div className="relative z-10 p-4">
           <div className="bg-gradient-to-br from-red-500 to-amber-400 p-[6px]">
             <div className="bg-white w-full h-48" />
