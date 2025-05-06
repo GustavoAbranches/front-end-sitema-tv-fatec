@@ -5,7 +5,7 @@ import HorarioQuadro from "../components/Horario_components/HorarioQuadro.jsx";
 const Horario = () => {
   return (
     <div>
-      <div className="bg-blue-900 w-full h-8"></div>
+      <div className="bg-blue-900 w-[1219px] h-8"></div>
       <div className="flex">
         <Sidediv />
         <HorarioQuadro />
