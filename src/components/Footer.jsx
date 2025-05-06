@@ -7,8 +7,8 @@ const Footer = () => {
     <div className="absolute bottom-0 w-full h-16 flex">
       <Data />
       <Hora />
-      <Clima day={0} text={'Hoje'}/>
-      <Clima day={1} text={'Amanhã'}/>
+      <Clima day={0} text={"Hoje"} />
+      <Clima day={1} text={"Amanhã"} />
     </div>
   );
 };

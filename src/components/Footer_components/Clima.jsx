@@ -33,8 +33,13 @@ const Clima = ({ day, text }) => {
   }
 
   return (
+<<<<<<< HEAD
+    <div className="flex justify-evenly items-center h-full w-1/4">
+      <span className="font-bold text-gray-400 text-2xl">{text}</span>
+=======
     <div className="flex p-8 items-center h-full w-1/4">
       <span className="font-bold text-gray-400 text-2xl mr-6">{text}</span>
+>>>>>>> 2000a26c2495007f9cfec0e5a72406e8f05a3bce
       <span className="font-bold text-gray-400 text-2xl">
         {Math.round(clima.forecast.forecastday[day].day.mintemp_c)}° /
         {Math.round(clima.forecast.forecastday[day].day.maxtemp_c)}°
