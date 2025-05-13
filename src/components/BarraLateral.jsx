@@ -5,7 +5,7 @@ export default function BarraLateral() {
         className="relative w-[30vw] h-[570px] flex flex-col justify-between text-white bg-cover bg-center"
         style={{ backgroundImage: "url('/src/assets/fatec-arcos.jpg')" }}
       >
-        <div className="absolute inset-0 bg-blue-950 bg-opacity-90" />
+        <div className="absolute inset-0 bg-primaryBlue bg-opacity-90" />
 
         <div className="relative z-10 p-4">
           <div className="bg-gradient-to-br from-red-500 to-amber-400 p-[6px]">
@@ -22,7 +22,7 @@ export default function BarraLateral() {
           </div>
         </div>
 
-        <div className="relative z-10 flex justify-center object-cover">
+        <div className="relative z-10 flex justify-center object-cover mb-8">
           <img src="../src/assets/Fateclogo.png" alt="Fatec Carapicuíba" />
         </div>
       </div>

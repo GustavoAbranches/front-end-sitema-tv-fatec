@@ -4,7 +4,7 @@ export default function Aviso() {
       className="w-full h-[140px] px-6 py-6 text-white bg-cover bg-center relative"
       style={{ backgroundImage: "url('/src/assets/Fatec.jpg')" }}
     >
-      <div className="absolute inset-0 bg-blue-950 bg-opacity-90" />
+      <div className="absolute inset-0 bg-primaryBlue bg-opacity-90" />
       <div className="relative z-10">
         <p className="font-bold text-sm mb-1">AMS | 10/04 - 11/04</p>
         <p className="text-sm leading-tight">
