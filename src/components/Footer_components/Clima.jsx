@@ -27,20 +27,20 @@ const Clima = ({ day, text }) => {
   if (loading) {
     return (
       <div className="flex justify-evenly items-center h-full w-1/4">
-        <span className="text-gray-400">Carregando clima...</span>
+        <span className="text-blueGray">Carregando clima...</span>
       </div>
     );
   }
 
   return (
     <div className="relative flex bg-white p-8 justify-around items-center h-16 w-[593px]">
-      <span className="font-bold text-gray-400 text-2xl">{text}</span>
+      <span className="font-bold text-blueGray text-2xl">{text}</span>
       <img
         src={clima.current.condition.icon}
         alt={clima.current.condition.text}
         className="inline-block w-12 h-12"
       />
-      <span className="font-bold text-gray-400 text-2xl">
+      <span className="font-bold text-blueGray text-2xl">
         {Math.round(clima.forecast.forecastday[day].day.mintemp_c)}°/
         {Math.round(clima.forecast.forecastday[day].day.maxtemp_c)}°
       </span>

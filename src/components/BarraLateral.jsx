@@ -14,7 +14,7 @@ export default function BarraLateral() {
         </div>
 
         <div className="relative z-10 p-4">
-          <div className="bg-amber-400 text-center text-[#00224D] py-2 px-1 mb-4 ">
+          <div className="bg-tangerine text-center text-[#00224D] py-2 px-1 mb-4 ">
             <p className="text-sm font-bold">03.02</p>
             <p className="text-sm font-bold">Aniversário</p>
             <p className="text-sm font-bold">FATEC Carapicuíba</p>

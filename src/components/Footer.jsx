@@ -9,9 +9,9 @@ const Footer = () => {
       <Hora />
       <Clima day={0} text={"Hoje"} />
       <div className="relative z-10 flex flex-row h-full">
-        <div className="w-[20px] h-[64px] bg-red-600" />
-        <div className="w-[20px] h-[64px] bg-orange-500" />
-        <div className="w-[20px] h-[64px] bg-yellow-400" />
+        <div className="w-[20px] h-[64px] bg-carmineRed" />
+        <div className="w-[20px] h-[64px] bg-tangerine" />
+        <div className="w-[20px] h-[64px] bg-mediumOrange" />
       </div>
       <Clima day={1} text={"Amanhã"} />
     </div>

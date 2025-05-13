@@ -5,6 +5,10 @@ export default {
     extend: {
       colors: {
         primaryBlue: '#012877',
+        carmineRed: '#F8211C',
+        tangerine: '#FF8019',
+        mediumOrange: '#FFA500',
+        blueGray: '#547581',
       }
     },
   },
