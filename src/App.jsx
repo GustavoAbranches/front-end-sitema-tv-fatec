@@ -3,7 +3,6 @@ import BarraLateral from "./components/BarraLateral";
 import TelaPrincipal from "./pages/TelaPrincipal";
 import Login from "./pages/Login";
 import Horario from "./pages/Horario";
-
 import Aviso from "./components/Noticias_components/Aviso.jsx";
 import Footer from "./components/Footer";
 import DivSection from "./components/DivSection.jsx";
@@ -26,7 +25,7 @@ function App() {
                 <DivSection />
                 <BarraLateral />
               </div>
-              <Footer /> {/* Adicionando o Footer aqui */}
+              <Footer /> 
             </div>
           }
         />
