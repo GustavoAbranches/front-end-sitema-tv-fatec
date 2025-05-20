@@ -1,6 +1,6 @@
 const DivImagem = () => {
   return (
-    <div className="relative w-[450px] h-[450px] ml-8">
+    <div className="relative 2xl:w-[450px] lg:w-[200px] lg:h-[200px] 2xl:h-[450px] mb-8">
       {/* Camadas coloridas no fundo */}
       <div className="absolute bottom-3 right-3 w-full h-full bg-red-500 z-0 rounded-sm" />
       <div className="absolute bottom-2 right-2 w-full h-full bg-orange-400 z-10 rounded-sm" />

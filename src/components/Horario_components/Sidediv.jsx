@@ -4,8 +4,8 @@ const Sidediv = () => {
       className=" bg-cover"
       style={{ backgroundImage: "url('/src/assets/Fatec.jpg')" }}
     >
-      <div className="flex justify-center items-center bg-primaryBlue bg-opacity-90 w-40 h-full">
-        <p className="pl-[50px] text-4xl font-bold -rotate-90 text-white w-96 whitespace-nowrap">
+      <div className="flex justify-center items-center bg-primaryBlue bg-opacity-90 w-48 h-full">
+        <p className="text-7xl font-bold -rotate-90 text-white w-[70rem] whitespace-nowrap">
           Horário Acadêmico
         </p>
       </div>

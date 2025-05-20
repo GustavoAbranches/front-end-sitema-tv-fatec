@@ -1,7 +1,13 @@
+import Aviso from '../components/Noticias_components/Aviso';
+
+
 export default function TelaPrincipal() {
   return (
-    <div className="bg-gray-100 h-full">
-      <h1 className="text-2xl font-bold">Conteúdo Principal</h1>
+    <div>
+      <div className="h-[47rem]">
+        <h1 className="text-2xl font-bold">Conteúdo Principal</h1>
+      </div>
+      <Aviso />
     </div>
   );
 }

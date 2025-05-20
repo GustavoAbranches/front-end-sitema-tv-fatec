@@ -1,4 +1,3 @@
-import Aviso from "../components/Noticias_components/Aviso";
 import BarraLateral from "../components/BarraLateral";
 import DivSection from "../components/DivSection";
 import Footer from "../components/Footer";
@@ -8,12 +7,11 @@ const Tela = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <div className="flex flex-row flex-1">
-        <div className="flex flex-col w-2/3">
+        <div className="h-full w-full">
           <TelaPrincipal />
-          <Aviso />
         </div>
-        <div className="flex flex-row w-1/3">
-          <DivSection />
+        <div className="flex flex-row">
+          <DivSection/>
           <BarraLateral />
         </div>
       </div>

@@ -1,9 +1,9 @@
 const DivSection = () => {
   return (
     <div className="flex flex-row">
-      <div className="w-[20px] bg-carmineRed" />
-      <div className="w-[20px] bg-tangerine" />
-      <div className="w-[20px] bg-mediumOrange" />
+      <div className="2xl:w-8 lg:w-4 bg-carmineRed" />
+      <div className="2xl:w-8 lg:w-4 bg-tangerine" />
+      <div className="2xl:w-8 lg:w-4 bg-mediumOrange" />
     </div>
   );
 };
