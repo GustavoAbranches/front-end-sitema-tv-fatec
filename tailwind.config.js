@@ -4,12 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        primaryBlue: '#012877',
-        carmineRed: '#F8211C',
-        tangerine: '#FF8019',
-        mediumOrange: '#FFA500',
-        blueGray: '#547581',
-      }
+        primaryBlue: "#012877",
+        carmineRed: "#F8211C",
+        tangerine: "#FF8019",
+        mediumOrange: "#FFA500",
+        blueGray: "#547581",
+      },
+      fontFamily: {
+        verdana: ['Verdana', 'Geneva', 'sans-serif'],
+      },
     },
   },
   plugins: [],

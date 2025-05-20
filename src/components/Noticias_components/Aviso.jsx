@@ -1,7 +1,7 @@
 export default function Aviso() {
   return (
     <div
-      className="w-full h-[140px] px-6 py-6 text-white bg-cover bg-center relative"
+      className="px-6 py-6 text-white bg-cover bg-center relative"
       style={{ backgroundImage: "url('/src/assets/Fatec.jpg')" }}
     >
       <div className="absolute inset-0 bg-primaryBlue bg-opacity-90" />
