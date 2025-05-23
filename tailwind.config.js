@@ -11,7 +11,7 @@ export default {
         blueGray: "#547581",
       },
       fontFamily: {
-        verdana: ['Verdana', 'Geneva', 'sans-serif'],
+        verdana: ["Verdana", "Geneva", "sans-serif"],
       },
     },
   },

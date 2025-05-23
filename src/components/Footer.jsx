@@ -9,7 +9,7 @@ const Footer = () => {
       <Data />
       <Hora />
       <Clima day={0} text={"Hoje"} />
-        <DivSection />
+      <DivSection />
       <Clima day={1} text={"Amanhã"} />
     </div>
   );

@@ -1,4 +1,4 @@
-import BgImage from '../../assets/fatec-arcos.jpg'
+import BgImage from "../../assets/fatec-arcos.jpg";
 
 export default function Aviso() {
   return (

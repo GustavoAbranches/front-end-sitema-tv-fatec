@@ -1,7 +1,7 @@
 import BarraLateral from "../components/BarraLateral";
 import DivSection from "../components/DivSection";
 import Footer from "../components/Footer";
-import NoticiasImagem from '../components/Noticias_components/NoticiasImagem'
+import NoticiasImagem from "../components/Noticias_components/NoticiasImagem";
 
 const Tela = () => {
   return (
@@ -11,7 +11,7 @@ const Tela = () => {
           <NoticiasImagem />
         </div>
         <div className="flex flex-row">
-          <DivSection/>
+          <DivSection />
           <BarraLateral />
         </div>
       </div>

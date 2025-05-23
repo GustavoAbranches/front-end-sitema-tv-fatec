@@ -16,7 +16,7 @@ export default function BarraLateral() {
         <div className="flex flex-col justify-center items-center relative z-10 pt-8">
           <DivImagem />
           <DivAviso />
-            <img src={LogoFatec} alt="Logo Fatec" className=""/>
+          <img src={LogoFatec} alt="Logo Fatec"/>
         </div>
       </div>
     </div>
