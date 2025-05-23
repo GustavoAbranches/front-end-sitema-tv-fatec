@@ -3,7 +3,11 @@ import DivSection from "../components/DivSection";
 import Footer from "../components/Footer";
 import NoticiasImagem from "../components/Noticias_components/NoticiasImagem";
 
+import navegacao from "../util/navegacao";
+
 const Tela = () => {
+  navegacao('/horario');
+
   return (
     <div className="flex flex-col min-h-screen">
       <div className="flex flex-row flex-1">
