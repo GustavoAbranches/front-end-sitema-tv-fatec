@@ -1,6 +1,3 @@
-//import { useEffect } from "react";
-//import { useNavigate } from "react-router";
-
 import Footer from "../components/Footer.jsx";
 import Sidediv from "../components/Horario_components/Sidediv.jsx";
 import HorarioQuadro from "../components/Horario_components/HorarioQuadro.jsx";
@@ -9,7 +6,7 @@ import DivSection from "../components/DivSection.jsx";
 import navegacao from "../util/navegacao.js";
 
 const Horario = () => {
-  navegacao('/');
+  navegacao("/");
 
   return (
     <div className="flex flex-col min-h-screen">

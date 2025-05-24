@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+
 import vinheta from "../assets/vinhetas/vinheta.mp4";
 
 function Vinheta() {
