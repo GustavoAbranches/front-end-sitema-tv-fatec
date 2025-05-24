@@ -10,7 +10,7 @@ const Horario = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="bg-primaryBlue w-full h-12"></div>
+      <div className="bg-primaryBlue w-full 2xl:h-12 lg:h-6"></div>
       <div className="flex flex-1">
         <Sidediv />
         <HorarioQuadro />
