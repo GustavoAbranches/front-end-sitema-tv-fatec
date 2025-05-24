@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+//Import da telas
 import Login from "./pages/Login";
 import Horario from "./pages/Horario";
 import Tela from "./pages/Tela";
@@ -8,10 +10,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Tela />} />
         <Route path="/vinheta" element={<Vinheta />} />
         <Route path="/horario" element={<Horario />} />
-        <Route path="/" element={<Tela />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );

@@ -5,7 +5,7 @@ import DivSection from "./DivSection.jsx";
 
 const Footer = () => {
   return (
-    <div className="w-full flex h-32">
+    <div className="w-full flex 2xl:h-32 lg:h-16">
       <Data />
       <Hora />
       <Clima day={0} text={"Hoje"} />

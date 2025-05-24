@@ -20,7 +20,9 @@ const Hora = () => {
 
   return (
     <div className="flex items-center justify-center flex-1 bg-tangerine">
-      <span className="font-bold text-white text-5xl">{hour}</span>
+      <span className="font-bold text-white 2xl:text-5xl lg:text-3xl">
+        {hour}
+      </span>
     </div>
   );
 };

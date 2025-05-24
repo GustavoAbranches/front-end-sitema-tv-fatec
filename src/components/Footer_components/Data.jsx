@@ -4,7 +4,9 @@ const Data = () => {
 
   return (
     <div className="flex items-center justify-center flex-1 bg-carmineRed">
-      <span className="font-bold text-white text-5xl">{formatDate}</span>
+      <span className="font-bold text-white 2xl:text-5xl lg:text-3xl">
+        {formatDate}
+      </span>
     </div>
   );
 };

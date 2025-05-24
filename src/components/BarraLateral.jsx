@@ -10,13 +10,13 @@ export default function BarraLateral() {
         backgroundImage: `url(${BgImage})`,
         backgroundSize: "cover",
       }}
-      className="bg-cover bg-center relative h-full 2xl:w-[35rem] lg:w-[23rem]"
+      className="bg-cover bg-center relative h-full 2xl:w-[35rem] lg:w-[20rem]"
     >
       <div className="absolute inset-0 bg-primaryBlue bg-opacity-90">
         <div className="flex flex-col justify-center items-center relative z-10 pt-8">
           <DivImagem />
           <DivAviso />
-          <img src={LogoFatec} alt="Logo Fatec" />
+          <img src={LogoFatec} alt="Logo Fatec" className="2xl:h-52 lg:h-32" />
         </div>
       </div>
     </div>
