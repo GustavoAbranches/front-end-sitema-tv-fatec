@@ -14,6 +14,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Tela />} />
+        <Route path="/" element={<Login />} />
         <Route path="/vinheta" element={<Vinheta />} />
         <Route path="/horario" element={<Horario />} />
         <Route path="/materias" element={<Materias />} />
