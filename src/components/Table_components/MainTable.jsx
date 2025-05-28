@@ -13,14 +13,14 @@ const MainTable = () => {
 
   const itemsPerPage = 7;
 
-  // 🔍 Filtragem
+  //filtragem
   const filteredData = data.filter(
     (item) =>
       item.materia.toLowerCase().includes(search.toLowerCase()) ||
       item.curso.toLowerCase().includes(search.toLowerCase()),
   );
 
-  // ⬆️ Ordenação
+  //ordenação
   const sortedData = [...filteredData].sort((a, b) => {
     if (!sortColumn) return 0;
 
@@ -32,14 +32,14 @@ const MainTable = () => {
     return 0;
   });
 
-  // 📄 Paginação
+  //paginação
   const totalPages = Math.ceil(sortedData.length / itemsPerPage);
   const paginatedData = sortedData.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
   );
 
-  // 🔄 Alterna ordenação
+  //alterna ordenação
   const handleSort = (column) => {
     if (sortColumn === column) {
       setSortDirection(sortDirection === "asc" ? "desc" : "asc");

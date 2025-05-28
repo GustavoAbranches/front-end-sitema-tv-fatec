@@ -1,4 +1,8 @@
+import { useHorario } from "../../hooks/useHorarios";
+
 const TableComponent = ({ data, handleSort, sortColumn, sortDirection }) => {
+  const [horarios, error, loading] = useHorario();
+
   return (
     <table className="table-auto w-full border border-gray-400">
       <thead>
@@ -28,13 +32,13 @@ const TableComponent = ({ data, handleSort, sortColumn, sortDirection }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((item) => (
+        {horarios.map((item) => (
           <tr key={item.id} className="hover:bg-gray-100">
             <td className="border px-4 py-2">{item.id}</td>
-            <td className="border px-4 py-2">{item.materia}</td>
             <td className="border px-4 py-2">{item.curso}</td>
+            <td className="border px-4 py-2">{item.diciplina}</td>
             <td className="border px-4 py-2">
-              {item.horarioInicio} - {item.horarioFinal}
+              {item.horario_inicial} - {item.horario_final}
             </td>
           </tr>
         ))}
