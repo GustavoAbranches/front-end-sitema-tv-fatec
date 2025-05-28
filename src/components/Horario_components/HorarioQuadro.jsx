@@ -35,21 +35,21 @@ const HorarioQuadro = () => {
     const period = getCurrentPeriod();
     if (period === "Manhã") {
       return [
-        { start: "07:40", end: "09:30", label: "7:40 - 9:30" },
-        { start: "09:30", end: "11:20", label: "9:30 - 11:20" },
-        { start: "11:20", end: "13:00", label: "11:20 - 13:00" },
+        { start: "07:40", end: "09:30", label: "7:40" },
+        { start: "09:30", end: "11:20", label: "9:30" },
+        { start: "11:20", end: "13:00", label: "11:20" },
       ];
     }
     if (period === "Tarde") {
       return [
-        { start: "13:00", end: "14:50", label: "13:00 - 14:50" },
-        { start: "14:50", end: "16:40", label: "14:50 - 16:40" },
-        { start: "16:40", end: "18:30", label: "16:40 - 18:30" },
+        { start: "13:00", end: "14:50", label: "13:00" },
+        { start: "14:50", end: "16:40", label: "14:50" },
+        { start: "16:40", end: "18:30", label: "16:40" },
       ];
     }
     return [
-      { start: "19:00", end: "20:40", label: "19:00 - 20:40" },
-      { start: "20:40", end: "22:20", label: "20:40 - 22:20" },
+      { start: "19:00", end: "20:40", label: "19:00" },
+      { start: "20:40", end: "22:20", label: "20:40" },
     ];
   };
 
@@ -134,7 +134,7 @@ const HorarioQuadro = () => {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+      <div className="flex items-center justify-center h-full bg-gray-50">
         <div className="text-xl text-red-600">Erro ao carregar dados</div>
       </div>
     );
@@ -142,7 +142,7 @@ const HorarioQuadro = () => {
 
   if (!currentCourse) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+      <div className="flex items-center justify-center h-full bg-gray-50">
         <div className="text-xl text-gray-600">Nenhum curso encontrado</div>
       </div>
     );
@@ -150,15 +150,12 @@ const HorarioQuadro = () => {
 
   // Renderização
   return (
-    <div className="h-full bg-gray-50 p-6">
+    <div className="h-full bg-gray-50 p-4">
       {/* Header */}
-      <div className="mb-4">
-        <div className="flex items-center mb-2">
+      <div className="mb-6">
+        <div className="flex items-center mb-4">
           <div className="bg-blue-800 text-white px-4 py-2 rounded-l-lg text-2xl font-bold">
-            {currentCourse.name
-              .split(" ")
-              .map((word) => word.charAt(0))
-              .join("")}
+            {currentCourse.name.match(/[A-Z]/g)?.join("") || ""}
           </div>
           <div className="bg-orange-400 w-2 h-12"></div>
           <div className="bg-white px-6 py-2 shadow-md rounded-r-lg">
@@ -167,26 +164,33 @@ const HorarioQuadro = () => {
             </h1>
           </div>
         </div>
+      </div>
 
-        {/* Timeline */}
-        <div className="grid grid-cols-4 gap-4 mb-3">
-          <div></div> {/* Espaço do semestre */}
+      {/* Grid Unificada - Header dos Horários + Disciplinas */}
+      <div className="space-y-3">
+        {/* Linha do cabeçalho com horários */}
+        <div className="grid grid-cols-4 gap-4">
+          <div className="w-28 text-right">
+            <span className="text-lg font-semibold text-gray-600">
+              Horários
+            </span>
+          </div>
           {timeSlots.map((slot, index) => (
-            <div key={index} className="flex flex-col items-center">
-              <div className="w-4 h-4 bg-red-500 mb-2"></div>
-              <span className="text-sm font-semibold text-gray-600">
-                {slot.label}
-              </span>
+            <div
+              key={index}
+              className="h-[50px] w-[290px] flex flex-col items-start text-primaryBlue"
+            >
+              <div className="relative w-[20px] h-[20px] bg-orange-400 rounded-md mb-1"></div>
+              <div className="absolute z-10 mt-2 w-[300px] h-[5px] bg-orange-400"></div>
+              <span className="text-sm font-semibold">{slot.label}</span>
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Grade */}
-      <div className="space-y-4">
+        {/* Linhas dos semestres */}
         {semesters.map((semester) => (
           <div key={semester} className="grid grid-cols-4 gap-4">
-            <div className="w-28 text-right">
+            <div className="w-[150px] text-right">
               <span className="text-lg font-semibold text-gray-600">
                 {semester}° Semestre
               </span>

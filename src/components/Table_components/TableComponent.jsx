@@ -1,10 +1,10 @@
 import { useHorario } from "../../hooks/useHorarios";
 
 const TableComponent = ({ data, handleSort, sortColumn, sortDirection }) => {
-  const [horarios, error, loading] = useHorario();
+  const { horarios, error, loading } = useHorario();
 
   return (
-    <table className="table-auto w-full border border-gray-400">
+    <table className="table-auto w-[900px] border border-gray-400">
       <thead>
         <tr className="bg-gray-200">
           <th
