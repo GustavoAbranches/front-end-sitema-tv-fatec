@@ -21,7 +21,7 @@ const CadastroNoticias = () => {
     e.preventDefault();
 
     try {
-      await addNoticia(noticiaData.titulo, noticiaData.descricao);
+      await addNoticia(noticiaData);
 
       setSuccess(true);
       setNoticiaData({
