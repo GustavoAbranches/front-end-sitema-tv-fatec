@@ -1,12 +1,12 @@
 import api from "./api";
 
 export const getNoticias = async () => {
-  const response = await api.get("/api/noticias");
+  const response = await api.get("/api/noticias/");
   return response.data;
 };
 
 export const postNoticias = async (noticia) => {
-  const response = await api.post("/api/noticias", noticia);
+  const response = await api.post("/api/noticias/", noticia);
   return response.data;
 };
 

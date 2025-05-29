@@ -30,7 +30,7 @@ const Login = () => {
 
     try {
       await login(formData.email, formData.senha);
-      navigate("/materias");
+      navigate("/admin");
       alert("Login realizado com sucesso!");
     } catch (err) {
       alert("Erro no login:", err.message);

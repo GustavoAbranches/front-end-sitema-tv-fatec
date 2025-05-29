@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import PainelMaterias from "./pages/PainelMaterias";
-import Dashboard from "./pages/Dashboard";
+import CadastroMateria from "./pages/CadastroMateria";
+import CadastroCurso from "./pages/CadastroCurso";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Horario from "./pages/Horario";
 import Tela from "./pages/Tela";
 import Vinheta from "./pages/Vinheta";
 import Materias from "./pages/Materias";
-import Cadastro from "./pages/Cadastro";
+import CadastroUsuario from "./pages/CadastroUsuario";
 import Noticias from "./pages/Noticias";
 
 function App() {
@@ -21,10 +21,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/materias" element={<Materias />} />
-        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
         <Route path="/noticias" element={<Noticias />} />
-        <Route path="/painel-materias" element={<PainelMaterias />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/cadastro-materia" element={<CadastroMateria />} />
+        <Route path="/cadastro-curso" element={<CadastroCurso />} />
       </Routes>
     </Router>
   );

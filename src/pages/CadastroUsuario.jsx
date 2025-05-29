@@ -3,7 +3,7 @@ import { useAuth } from "../hooks/useAuth";
 
 import Sidebar from "../components/Sidebar";
 
-const Cadastro = () => {
+const CadastroUsuario = () => {
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
@@ -64,7 +64,11 @@ const Cadastro = () => {
         <Sidebar />
       </div>
       <div className="flex flex-col justify-center items-center h-screen w-full bg-primaryBlue text-white">
-        <h2 className="font-verdana text-2xl mb-10">Registrar Usuário</h2>
+        <div className="w-full p-6">
+          <h2 className="font-verdana text-2xl font-bold mb-5">
+            Registrar Usuário
+          </h2>
+        </div>
 
         {error && (
           <div
@@ -88,7 +92,7 @@ const Cadastro = () => {
           onSubmit={handleSubmit}
           className="flex flex-col justify-around items-start h-[500px] w-[350px]"
         >
-          <div className="flex flex-col text-white font-verdana">
+          <div className="flex w-full flex-col text-white font-verdana">
             <label htmlFor="nome">Nome:</label>
             <input
               type="text"
@@ -98,11 +102,11 @@ const Cadastro = () => {
               onChange={handleChange}
               required
               disabled={loading}
-              className="text-black font-verdana"
+              className="text-black font-verdana w-full rounded-full px-4 py-1"
             />
           </div>
 
-          <div className="flex flex-col text-white font-verdana">
+          <div className="flex w-full flex-col text-white font-verdana">
             <label htmlFor="email">Email:</label>
             <input
               type="email"
@@ -112,11 +116,11 @@ const Cadastro = () => {
               onChange={handleChange}
               required
               disabled={loading}
-              className="text-black font-verdana"
+              className="text-black font-verdana w-full rounded-full px-4 py-1"
             />
           </div>
 
-          <div className="flex flex-col text-white font-verdana">
+          <div className="flex w-full flex-col text-white font-verdana">
             <label htmlFor="senha">Senha:</label>
             <input
               type="password"
@@ -126,7 +130,7 @@ const Cadastro = () => {
               onChange={handleChange}
               required
               disabled={loading}
-              className="text-black font-verdana"
+              className="text-black font-verdana w-full rounded-full px-4 py-1"
             />
           </div>
 
@@ -138,7 +142,7 @@ const Cadastro = () => {
               value={formData.role}
               onChange={handleChange}
               disabled={loading}
-              className="text-black font-verdana"
+              className="text-black font-verdana w-full rounded-full px-4 py-1"
             >
               <option value="editor">Editor</option>
               <option value="admin">Admin</option>
@@ -146,7 +150,7 @@ const Cadastro = () => {
             </select>
           </div>
 
-          <div className="flex flex-col text-white font-verdana">
+          <div className="flex flex-col w-full text-white font-verdana">
             <label htmlFor="setor">Setor (opcional):</label>
             <input
               type="text"
@@ -155,21 +159,23 @@ const Cadastro = () => {
               value={formData.setor}
               onChange={handleChange}
               disabled={loading}
-              className="text-black font-verdana"
+              className="text-black font-verdana w-full rounded-full px-4 py-1"
             />
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="bg-mediumOrange w-24 h-8 font-semibold rounded-md"
-          >
-            {loading ? "Registrando..." : "Registrar"}
-          </button>
+          <div className="flex justify-center w-full ">
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-mediumOrange w-24 h-8 font-semibold rounded-md"
+            >
+              {loading ? "Registrando..." : "Registrar"}
+            </button>
+          </div>
         </form>
       </div>
     </div>
   );
 };
 
-export default Cadastro;
+export default CadastroUsuario;

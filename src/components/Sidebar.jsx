@@ -9,8 +9,11 @@ const Sidebar = () => {
       <Link to="/noticias" className="hover:bg-slate-200 p-2 rounded-md">
         Notícias
       </Link>
-      <Link to="/cadastro" className="hover:bg-slate-200 p-2 rounded-md">
-        Cadastro
+      <Link
+        to="/cadastro-usuario"
+        className="hover:bg-slate-200 p-2 rounded-md"
+      >
+        Cadastro Usuário
       </Link>
     </div>
   );

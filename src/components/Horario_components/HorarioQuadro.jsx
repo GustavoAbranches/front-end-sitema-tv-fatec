@@ -167,31 +167,33 @@ const HorarioQuadro = () => {
       </div>
 
       {/* Grid Unificada - Header dos Horários + Disciplinas */}
-      <div className="space-y-3">
+      <div className="2xl:h-[800px] space-y-3">
         {/* Linha do cabeçalho com horários */}
-        <div className="grid grid-cols-4 gap-4">
-          <div className="w-28 text-right">
-            <span className="text-lg font-semibold text-gray-600">
+        <div className="grid grid-cols-4 gap-4 mr-6">
+          <div className="flex justify-center items-center 2xl:w-36 lg:w-28 text-right ">
+            <span className="2xl:text-4xl 2xl:font-bold lg:text-lg lg:font-semibold text-primaryBlue">
               Horários
             </span>
           </div>
           {timeSlots.map((slot, index) => (
             <div
               key={index}
-              className="h-[50px] w-[290px] flex flex-col items-start text-primaryBlue"
+              className="2xl:h-[100px] 2xl:w-[400px] lg:h-[50px] lg:w-[290px] flex flex-col items-start justify-center text-primaryBlue"
             >
-              <div className="relative w-[20px] h-[20px] bg-orange-400 rounded-md mb-1"></div>
-              <div className="absolute z-10 mt-2 w-[300px] h-[5px] bg-orange-400"></div>
-              <span className="text-sm font-semibold">{slot.label}</span>
+              <div className="relative 2xl:w-[40px] 2xl:h-[40px] lg:w-[20px] lg:h-[20px] bg-orange-400 rounded-md mb-1"></div>
+              <div className="absolute z-10 2xl:mb-[30px] lg:mb-[10px] 2xl:w-[400px] 2xl:h-[10px] lg:w-[300px] lg:h-[5px] bg-orange-400"></div>
+              <span className="2xl:text-lg lg:text-sm 2xl:font-bold lg:font-semibold">
+                {slot.label}
+              </span>
             </div>
           ))}
         </div>
 
         {/* Linhas dos semestres */}
         {semesters.map((semester) => (
-          <div key={semester} className="grid grid-cols-4 gap-4">
-            <div className="w-[150px] text-right">
-              <span className="text-lg font-semibold text-gray-600">
+          <div key={semester} className="grid grid-cols-4 gap-2">
+            <div className="flex justify-center items-center 2xl:w-[300px] lg:w-[150px] text-right">
+              <span className="2xl:text-3xl lg:text-lg 2xl:font-bold lg:font-semibold text-primaryBlue">
                 {semester}° Semestre
               </span>
             </div>
@@ -201,18 +203,18 @@ const HorarioQuadro = () => {
               return (
                 <div
                   key={index}
-                  className={`p-3 rounded-lg shadow-md h-[60px] w-[290px] flex items-center justify-center ${getCardColor(
+                  className={`lg:p-3 rounded-lg shadow-md 2xl:h-[105px] 2xl:w-[350px] lg:h-[60px] lg:w-[290px] flex items-center justify-center ${getCardColor(
                     discipline,
                   )}`}
                 >
                   {discipline ? (
                     <div className="text-center">
-                      <div className="font-semibold text-sm mb-1">
+                      <div className="2xl:text-xl 2xl:font-bold lg:font-semibold text-sm mb-1">
                         {discipline.disciplina}
                       </div>
                       {discipline.sala !== "Sem Professor" && (
-                        <div className="text-xs opacity-80">
-                          Sala {discipline.sala}
+                        <div className="2xl:text-lg 2xl:font-semibold lg:text-xs opacity-80">
+                          {discipline.docente} - Sala {discipline.sala}
                         </div>
                       )}
                     </div>
