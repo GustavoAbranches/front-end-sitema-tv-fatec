@@ -1,4 +1,41 @@
-export default function Login() {
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { useAuth } from "../hooks/useAuth";
+
+const Login = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    senha: "",
+  });
+
+  const { login, loading, error, clearError } = useAuth();
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    // Limpar erro quando usuário começar a digitar
+    if (error) {
+      clearError();
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await login(formData.email, formData.senha);
+      navigate("/materias");
+      alert("Login realizado com sucesso!");
+    } catch (err) {
+      alert("Erro no login:", err.message);
+    }
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-800 to-blue-900 p-4">
       <div className="w-full max-w-md bg-white rounded-xl shadow-xl overflow-hidden">
@@ -10,7 +47,7 @@ export default function Login() {
         </div>
 
         <div className="p-6">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="space-y-4">
               <div className="space-y-2">
                 <label
@@ -26,6 +63,11 @@ export default function Login() {
                   <input
                     id="email"
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    disabled={loading}
                     placeholder="seu@email.com"
                     className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400"
                   />
@@ -44,8 +86,13 @@ export default function Login() {
                     🔒
                   </div>
                   <input
-                    id="password"
                     type="password"
+                    id="senha"
+                    name="senha"
+                    value={formData.senha}
+                    onChange={handleChange}
+                    required
+                    disabled={loading}
                     placeholder="••••••••"
                     className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400"
                   />
@@ -53,9 +100,10 @@ export default function Login() {
               </div>
               <button
                 type="submit"
+                disabled={loading}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
               >
-                Entrar
+                {loading ? "Entrando..." : "Entrar"}
               </button>
             </div>
           </form>
@@ -63,4 +111,6 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};
+
+export default Login;
