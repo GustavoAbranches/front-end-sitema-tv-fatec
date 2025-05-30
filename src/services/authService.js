@@ -25,16 +25,14 @@ export const registerUser = async (
   nome,
   email,
   senha,
-  role = "editor",
-  setor = null,
+  tipo_usuario = "editor",
 ) => {
   try {
     const response = await api.post("/auth/register", {
       nome,
       email,
       senha,
-      role,
-      setor,
+      tipo_usuario,
     });
 
     const data = response.data;

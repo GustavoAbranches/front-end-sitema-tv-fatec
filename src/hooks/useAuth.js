@@ -49,12 +49,12 @@ export function useAuth() {
 
   // Função de registro
   const register = useCallback(
-    async (nome, email, senha, role = "editor", setor = null) => {
+    async (nome, email, senha, tipo_usuario = "editor") => {
       setLoading(true);
       setError(null);
 
       try {
-        const data = await registerUser(nome, email, senha, role, setor);
+        const data = await registerUser(nome, email, senha, tipo_usuario);
         return data;
       } catch (err) {
         console.error("Erro no registro:", err);

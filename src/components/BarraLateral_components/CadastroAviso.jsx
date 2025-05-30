@@ -1,18 +1,19 @@
 import { useState } from "react";
-import { useHorario } from "../hooks/useHorarios";
+import { useAvisos } from "../../hooks/useAvisos";
 
-const CadastroHorario = () => {
-    const [sucess, setSuccess] = useState();
-    const [horarioData, setHorarioData] = useState({
-        dia_semana: '',
-        turno: '',
-        descricao: ''
+const CadastroAviso = () => {
+    const [success, setSuccess] = useState();
+    const [avisoData, setAvisoData] = useState({
+        titulo: '',
+        data: '',
+        descricao: '',
+        publico_destino: ''
     });
-    const {addHorario, avisos, loading, error} = useHorario();
+    const {addAvisos, avisos, loading, error} = useAvisos();
 
     const handleChange = (e) => {
     const { name, value } = e.target;
-    setHorarioData((prev) => ({
+    setAvisoData((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -22,14 +23,14 @@ const CadastroHorario = () => {
     e.preventDefault();
 
     try {
-      await addHorario(horarioData);
+      await addAvisos(avisoData);
 
       setSuccess(true);
-      setHorarioData({
+      setAvisoData({
         titulo: "",
         descricao: "",
       });
-      alert("Horario registrado com sucesso");
+      alert("Notícia registrada com sucesso");
     } catch (err) {
       alert("Erro no registro");
     }
@@ -40,7 +41,7 @@ const CadastroHorario = () => {
          <div className="flex flex-col items-center w-full bg-primaryBlue text-white">
       <div className="w-full p-6">
         <h2 className="font-verdana text-2xl font-bold mb-5">
-          Cadastro Horario
+          Cadastro Aviso
         </h2>
       </div>
       <form
@@ -75,12 +76,26 @@ const CadastroHorario = () => {
           />
         </div>
         <div className="flex w-full flex-col text-white font-verdana">
-          <label htmlFor="descricao">Data:</label>
-          <textarea
-            type="text"
+          <label htmlFor="data">Data:</label>
+          <input
+            type="date"
             id="data"
             name="data"
-            value={avisoData.descricao}
+            value={avisoData.data}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            className="text-black font-verdana w-full rounded-md px-4 py-1"
+          />
+        </div>
+
+        <div className="flex w-full flex-col text-white font-verdana">
+          <label htmlFor="publico_destino">Publico Destino:</label>
+          <input
+            type="text"
+            id="publico_destino"
+            name="publico_destino"
+            value={avisoData.publico_destino}
             onChange={handleChange}
             required
             disabled={loading}
@@ -102,4 +117,4 @@ const CadastroHorario = () => {
     )
 };
 
-export default CadastroHorario;
+export default CadastroAviso;

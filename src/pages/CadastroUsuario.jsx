@@ -8,8 +8,7 @@ const CadastroUsuario = () => {
     nome: "",
     email: "",
     senha: "",
-    role: "editor",
-    setor: "",
+    tipo_usuario: "editor",
   });
 
   const [success, setSuccess] = useState(false);
@@ -35,8 +34,7 @@ const CadastroUsuario = () => {
         formData.nome,
         formData.email,
         formData.senha,
-        formData.role,
-        formData.setor || null,
+        formData.tipo_usuario,
       );
 
       setSuccess(true);
@@ -44,8 +42,7 @@ const CadastroUsuario = () => {
         nome: "",
         email: "",
         senha: "",
-        role: "editor",
-        setor: "",
+        tipo_usuario: "editor",
       });
 
       console.log("Usuário registrado com sucesso!");
@@ -135,11 +132,11 @@ const CadastroUsuario = () => {
           </div>
 
           <div className="flex flex-col text-white font-verdana">
-            <label htmlFor="role">Função:</label>
+            <label htmlFor="tipo_usuario">Função:</label>
             <select
-              id="role"
-              name="role"
-              value={formData.role}
+              id="tipo_usuario"
+              name="tipo_usuario"
+              value={formData.tipo_usuario}
               onChange={handleChange}
               disabled={loading}
               className="text-black font-verdana w-full rounded-full px-4 py-1"
@@ -148,19 +145,6 @@ const CadastroUsuario = () => {
               <option value="admin">Admin</option>
               <option value="viewer">Visualizador</option>
             </select>
-          </div>
-
-          <div className="flex flex-col w-full text-white font-verdana">
-            <label htmlFor="setor">Setor (opcional):</label>
-            <input
-              type="text"
-              id="setor"
-              name="setor"
-              value={formData.setor}
-              onChange={handleChange}
-              disabled={loading}
-              className="text-black font-verdana w-full rounded-full px-4 py-1"
-            />
           </div>
 
           <div className="flex justify-center w-full ">

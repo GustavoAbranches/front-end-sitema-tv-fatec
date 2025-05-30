@@ -10,7 +10,7 @@ export const postAvisos = async (aviso) => {
   return response.data;
 };
 
-export const deleteHorario = async (id) => {
+export const deleteAvisos = async (id) => {
   const response = await api.delete(`/api/avisos/${id}`);
   return response.data;
 };

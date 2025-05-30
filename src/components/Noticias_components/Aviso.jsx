@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNoticias } from "../../hooks/useNoticias";
 import BgImage from "../../assets/fatec-arcos.jpg";
 
