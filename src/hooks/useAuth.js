@@ -39,7 +39,6 @@ export function useAuth() {
       setIsLoggedIn(true);
       return data;
     } catch (err) {
-      console.error("Erro no login:", err);
       setError(err.message);
       throw err;
     } finally {
@@ -57,7 +56,6 @@ export function useAuth() {
         const data = await registerUser(nome, email, senha, tipo_usuario);
         return data;
       } catch (err) {
-        console.error("Erro no registro:", err);
         setError(err.message);
         throw err;
       } finally {

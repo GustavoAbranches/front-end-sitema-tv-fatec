@@ -14,10 +14,8 @@ export function useHorario() {
     setLoading(true);
     try {
       const data = await getHorarios();
-      console.log("Dados recebidos da API:", data);
       setHorarios(data);
     } catch (err) {
-      console.error("Erro na API:", err);
       setError(err);
     } finally {
       setLoading(false);

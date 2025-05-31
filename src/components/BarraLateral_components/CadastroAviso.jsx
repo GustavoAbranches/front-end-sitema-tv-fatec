@@ -2,16 +2,16 @@ import { useState } from "react";
 import { useAvisos } from "../../hooks/useAvisos";
 
 const CadastroAviso = () => {
-    const [success, setSuccess] = useState();
-    const [avisoData, setAvisoData] = useState({
-        titulo: '',
-        data: '',
-        descricao: '',
-        publico_destino: ''
-    });
-    const {addAvisos, avisos, loading, error} = useAvisos();
+  const [success, setSuccess] = useState();
+  const [avisoData, setAvisoData] = useState({
+    titulo: "",
+    data: "",
+    descricao: "",
+    publico_destino: "",
+  });
+  const { addAvisos, avisos, loading, error } = useAvisos();
 
-    const handleChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setAvisoData((prev) => ({
       ...prev,
@@ -36,13 +36,10 @@ const CadastroAviso = () => {
     }
   };
 
-    return(
-
-         <div className="flex flex-col items-center w-full bg-primaryBlue text-white">
+  return (
+    <div className="flex flex-col items-center w-full bg-primaryBlue text-white">
       <div className="w-full p-6">
-        <h2 className="font-verdana text-2xl font-bold mb-5">
-          Cadastro Aviso
-        </h2>
+        <h2 className="font-verdana text-2xl font-bold mb-5">Cadastro Aviso</h2>
       </div>
       <form
         onSubmit={handleSubmit}
@@ -114,7 +111,7 @@ const CadastroAviso = () => {
         </div>
       </form>
     </div>
-    )
+  );
 };
 
 export default CadastroAviso;

@@ -15,7 +15,6 @@ export function useNoticias() {
     setLoading(true);
     try {
       const data = await getNoticias();
-      console.log("Noticias recebidas da API:", data);
       setNoticias(data);
     } catch (err) {
       console.error("Erro na API:", err);

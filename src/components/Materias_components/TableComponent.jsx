@@ -1,4 +1,5 @@
-import React from 'react';
+import { useState, useMemo, useCallback } from "react";
+import { useHorario } from "../../hooks/useHorarios";
 import {
   useReactTable,
   getCoreRowModel,
@@ -6,7 +7,7 @@ import {
   getPaginationRowModel,
   getFilteredRowModel,
   flexRender,
-} from '@tanstack/react-table';
+} from "@tanstack/react-table";
 
 import {
   Table,
@@ -20,56 +21,77 @@ import {
   TextField,
   Pagination,
   Box,
-} from '@mui/material';
+  Button,
+  CircularProgress,
+  Typography,
+} from "@mui/material";
 
-import { ArrowDownward, ArrowUpward } from '@mui/icons-material';
+import { ArrowDownward, ArrowUpward } from "@mui/icons-material";
 
-// Dados de exemplo
-const defaultData = [
-  { id: 1, materia: 'Matemática', curso: 'Engenharia', horario: '08:00 - 09:30' },
-  { id: 2, materia: 'História', curso: 'Direito', horario: '10:00 - 11:30' },
-  { id: 3, materia: 'Física', curso: 'Engenharia', horario: '13:00 - 14:30' },
-  { id: 4, materia: 'Biologia', curso: 'Medicina', horario: '15:00 - 16:30' },
-  { id: 5, materia: 'Química', curso: 'Farmácia', horario: '09:00 - 10:30' },
-  { id: 6, materia: 'Português', curso: 'Letras', horario: '11:00 - 12:30' },
-  { id: 7, materia: 'Inglês', curso: 'Letras', horario: '13:30 - 15:00' },
-];
-
-// Colunas com suporte a filtro
-const columns = [
-  {
-    accessorKey: 'materia',
-    header: 'Matéria',
-    filterFn: 'includesString',
-  },
-  {
-    accessorKey: 'id',
-    header: 'ID',
-    filterFn: 'includesString',
-  },
-  {
-    accessorKey: 'curso',
-    header: 'Curso',
-    filterFn: 'includesString',
-  },
-  {
-    accessorKey: 'horario',
-    header: 'Horário',
-    filterFn: 'includesString',
-  },
-];
+const FilterInputs = ({ table }) => {
+  return (
+    <Box sx={{ display: "flex", gap: 2, marginBottom: 2, flexWrap: "wrap" }}>
+      {table.getAllLeafColumns().map((column) => {
+        if (!column.getCanFilter()) return null;
+        const filterValue = column.getFilterValue() ?? "";
+        return (
+          <TextField
+            key={column.id}
+            label={`Filtrar ${column.columnDef.header}`}
+            variant="outlined"
+            size="small"
+            value={filterValue}
+            onChange={(e) => column.setFilterValue(e.target.value || undefined)}
+          />
+        );
+      })}
+    </Box>
+  );
+};
 
 export default function TableComponent() {
-  const [sorting, setSorting] = React.useState([]);
-  const [columnFilters, setColumnFilters] = React.useState([]);
+  const { horarios, loading, error, removeHorario } = useHorario();
+
+  const [sorting, setSorting] = useState([]);
+  const [columnFilters, setColumnFilters] = useState([]);
+
+  const columns = useMemo(
+    () => [
+      {
+        accessorKey: "id",
+        header: "ID",
+        filterFn: "includesString",
+      },
+      {
+        accessorKey: "disciplina",
+        header: "Disciplina",
+        filterFn: "includesString",
+      },
+      {
+        accessorKey: "curso",
+        header: "Curso",
+        filterFn: "includesString",
+      },
+      {
+        accessorKey: "horario_inicial",
+        header: "Horário",
+        filterFn: "includesString",
+      },
+      {
+        id: "actions",
+        header: "Ações",
+        cell: () => null,
+        enableSorting: false,
+        enableColumnFilter: false,
+      },
+    ],
+    [],
+  );
 
   const table = useReactTable({
-    data: defaultData,
+    data: horarios,
     columns,
-    state: {
-      sorting,
-      columnFilters,
-    },
+    state: { sorting, columnFilters },
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -78,82 +100,106 @@ export default function TableComponent() {
     getPaginationRowModel: getPaginationRowModel(),
   });
 
-  return (
-    <div>
-    <Box sx={{ padding: 2 }}>
-      {/* Filtros por coluna */}
-      <Box sx={{ display: 'flex', gap: 2, marginBottom: 2, flexWrap: 'wrap' }}>
-        {table.getAllLeafColumns().map(column => {
-          const filterValue = column.getFilterValue();
-          return column.getCanFilter() ? (
-            <TextField
-              key={column.id}
-              label={`Filtrar ${column.columnDef.header}`}
-              variant="outlined"
-              size="small"
-              value={filterValue ?? ''}
-              onChange={e =>
-                column.setFilterValue(e.target.value || undefined)
-              }
-            />
-          ) : null;
-        })}
-      </Box>
+  const handleDelete = useCallback(
+    async (id) => {
+      if (!window.confirm("Tem certeza que deseja excluir?")) return;
 
-      {/* Tabela */}
+      try {
+        await removeHorario(id);
+      } catch (err) {
+        alert("Erro ao excluir: " + err.message);
+      }
+    },
+    [removeHorario],
+  );
+
+  if (loading) {
+    return (
+      <Box sx={{ textAlign: "center", mt: 4 }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box sx={{ textAlign: "center", mt: 4 }}>
+        <Typography color="error">Erro: {error.message || error}</Typography>
+      </Box>
+    );
+  }
+
+  return (
+    <Box sx={{ padding: 2 }}>
+      <FilterInputs table={table} />
+
       <TableContainer component={Paper} sx={{ borderRadius: 2, boxShadow: 3 }}>
         <Table>
           <TableHead>
-            {table.getHeaderGroups().map(headerGroup => (
+            {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map(header => {
+                {headerGroup.headers.map((header) => {
                   const isSorted = header.column.getIsSorted();
                   return (
                     <TableCell
                       key={header.id}
-                      sortDirection={isSorted === false ? false : isSorted}
-                      sx={{ fontWeight: 'bold', backgroundColor: '#f5f5f5' }}
+                      sortDirection={isSorted || false}
+                      sx={{ fontWeight: "bold", backgroundColor: "#f5f5f5" }}
                     >
                       <TableSortLabel
                         active={!!isSorted}
-                        direction={isSorted || 'asc'}
+                        direction={isSorted || "asc"}
                         onClick={header.column.getToggleSortingHandler()}
                         IconComponent={
-                          isSorted === 'asc'
+                          isSorted === "asc"
                             ? ArrowUpward
-                            : isSorted === 'desc'
-                            ? ArrowDownward
-                            : undefined
+                            : isSorted === "desc"
+                              ? ArrowDownward
+                              : undefined
                         }
                       >
                         {flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                       </TableSortLabel>
                     </TableCell>
                   );
                 })}
+                <TableCell
+                  sx={{ fontWeight: "bold", backgroundColor: "#f5f5f5" }}
+                >
+                  Ações
+                </TableCell>
               </TableRow>
             ))}
           </TableHead>
 
           <TableBody>
-            {table.getRowModel().rows.map(row => (
+            {table.getRowModel().rows.map((row) => (
               <TableRow key={row.id} hover>
-                {row.getVisibleCells().map(cell => (
+                {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
+                <TableCell>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    size="small"
+                    onClick={() => handleDelete(row.original.id)}
+                  >
+                    Excluir
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
 
-      {/* Paginação */}
-      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
+      <Box sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
         <Pagination
           count={table.getPageCount()}
           page={table.getState().pagination.pageIndex + 1}
@@ -163,6 +209,5 @@ export default function TableComponent() {
         />
       </Box>
     </Box>
-    </div>
   );
 }

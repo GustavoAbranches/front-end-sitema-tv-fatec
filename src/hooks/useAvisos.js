@@ -9,7 +9,6 @@ export function useAvisos() {
   const fetchAvisos = async () => {
     try {
       const data = await getAvisos();
-      console.log("Aviso recebidos da API:", data);
       setAvisos(data);
     } catch (err) {
       setError(err);
