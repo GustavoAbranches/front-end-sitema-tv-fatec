@@ -10,6 +10,9 @@ import Vinheta from "./pages/Vinheta";
 import Materias from "./pages/Materias";
 import CadastroUsuario from "./pages/CadastroUsuario";
 import Noticias from "./pages/Noticias";
+import CadastroNoticias from "./pages/CadastroNoticias";
+import Avisos from "./pages/Avisos";
+import CadastroAviso from "./components/BarraLateral_components/CadastroAviso";
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
         <Route path="/noticias" element={<Noticias />} />
         <Route path="/cadastro-materia" element={<CadastroMateria />} />
         <Route path="/cadastro-curso" element={<CadastroCurso />} />
+        <Route path="/cadastro-noticia" element={<CadastroNoticias />} />
+        <Route path="/avisos" element={<Avisos />} />
+        <Route path="/cadastro-avisos" element={<CadastroAviso />} />
       </Routes>
     </Router>
   );

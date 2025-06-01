@@ -3,7 +3,7 @@ import TableNoticias from "../components/Noticias_components/TableNoticias";
 import NavigateButton from "../components/NavigateButton";
 import DivSection from "../components/DivSection";
 
-const Noticias = () => {
+const Avisos = () => {
   return (
     <div className="flex">
       <div className="h-screen">
@@ -18,4 +18,4 @@ const Noticias = () => {
   );
 };
 
-export default Noticias;
+export default Avisos;

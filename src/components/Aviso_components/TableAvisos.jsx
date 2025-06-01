@@ -1,33 +1,33 @@
 import { useCallback } from "react";
 import { useState } from "react";
 
-import { useHorario } from "../../hooks/useHorarios";
+import { useAvisos } from "../../hooks/useAvisos";
 import { useTableState } from "../../hooks/useTableState";
-import { useHorarioColumns } from "../../hooks/useHorarioColumns";
+import { useNoticiasColumns } from "../../hooks/useNoticiasColumns";
 import { LoadingSpinner } from "../Table_components/LoadingSpinner";
 import { ErrorMessage } from "../Table_components/ErrorMessage";
 import { DataTable } from "../Table_components/DataTable";
 import { DeleteButton } from "../Table_components/DeleteButton";
 
-export default function TableComponent() {
-  const { horarios, loading, error, removeHorario } = useHorario();
+const TableAvisos = () => {
+  const { avisos, loading, error, removeAvisos } = useAvisos();
 
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
 
-  const columns = useHorarioColumns();
+  const columns = useNoticiasColumns();
 
   const handleDelete = useCallback(
     async (id) => {
       if (!window.confirm("Tem certeza que deseja excluir?")) return;
 
       try {
-        await removeHorario(id);
+        await removeAvisos(id);
       } catch (err) {
         alert("Erro ao excluir: " + err.message);
       }
     },
-    [removeHorario],
+    [removeAvisos],
   );
 
   const renderActions = useCallback(
@@ -46,7 +46,7 @@ export default function TableComponent() {
 
   return (
     <DataTable
-      data={horarios}
+      data={avisos}
       columns={columns}
       sorting={sorting}
       setSorting={setSorting}
@@ -55,4 +55,6 @@ export default function TableComponent() {
       renderActions={renderActions}
     />
   );
-}
+};
+
+export default TableAvisos;

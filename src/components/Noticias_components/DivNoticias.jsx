@@ -1,7 +1,7 @@
 import { useNoticias } from "../../hooks/useNoticias";
 import BgImage from "../../assets/fatec-arcos.jpg";
 
-const Aviso = () => {
+const DivNoticias = () => {
   const { noticias, loading, error } = useNoticias();
 
   // Get the latest news (first item) or show default message
@@ -65,4 +65,4 @@ const Aviso = () => {
   );
 };
 
-export default Aviso;
+export default DivNoticias;
