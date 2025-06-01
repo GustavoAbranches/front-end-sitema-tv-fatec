@@ -1,5 +1,7 @@
 import { Link } from "react-router";
 
+import LogoutButton from "./LogoutButton";
+
 const Sidebar = () => {
   return (
     <div className="h-full w-48 pb-96 pt-32 text-lg font-verdana border-r-2 border-solid bg-mediumOrange text-primaryBlue">
@@ -19,6 +21,7 @@ const Sidebar = () => {
         >
           Cadastro Usuário
         </Link>
+        <LogoutButton />
       </div>
     </div>
   );

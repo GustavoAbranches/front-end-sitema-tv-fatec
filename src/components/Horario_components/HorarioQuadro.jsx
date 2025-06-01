@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useHorario } from "../../hooks/useHorarios";
 
 const HorarioQuadro = () => {
@@ -126,7 +126,7 @@ const HorarioQuadro = () => {
   // Tratamento de loading e erro
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+      <div className="flex items-center justify-center w-full min-h-screen bg-gray-50">
         <div className="text-xl text-gray-600">Carregando...</div>
       </div>
     );
@@ -134,7 +134,7 @@ const HorarioQuadro = () => {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center h-full bg-gray-50">
+      <div className="flex items-center justify-center h-full w-full bg-gray-50">
         <div className="text-xl text-red-600">Erro ao carregar dados</div>
       </div>
     );
@@ -142,7 +142,7 @@ const HorarioQuadro = () => {
 
   if (!currentCourse) {
     return (
-      <div className="flex items-center justify-center h-full bg-gray-50">
+      <div className="flex items-center justify-center h-full w-full bg-gray-50">
         <div className="text-xl text-gray-600">Nenhum curso encontrado</div>
       </div>
     );

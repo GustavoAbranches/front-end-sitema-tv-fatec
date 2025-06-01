@@ -23,7 +23,7 @@ const CadastroUsuario = () => {
   const tipoUsuarioOptions = [
     { value: "editor", label: "Editor" },
     { value: "admin", label: "Admin" },
-    { value: "viewer", label: "Visualizador" },
+    { value: "superadmin", label: "Superadmin" },
   ];
 
   const handleChange = (e) => {

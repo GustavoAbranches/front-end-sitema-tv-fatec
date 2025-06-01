@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import CadastroMateria from "./pages/CadastroMateria";
-import CadastroCurso from "./pages/CadastroCurso";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Horario from "./pages/Horario";
@@ -13,6 +12,7 @@ import Noticias from "./pages/Noticias";
 import CadastroNoticias from "./pages/CadastroNoticias";
 import Avisos from "./pages/Avisos";
 import CadastroAviso from "./components/BarraLateral_components/CadastroAviso";
+import { RequireRole } from "./components/RequireRole";
 
 function App() {
   return (
@@ -24,13 +24,57 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/materias" element={<Materias />} />
-        <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
-        <Route path="/noticias" element={<Noticias />} />
-        <Route path="/cadastro-materia" element={<CadastroMateria />} />
-        <Route path="/cadastro-curso" element={<CadastroCurso />} />
-        <Route path="/cadastro-noticia" element={<CadastroNoticias />} />
-        <Route path="/avisos" element={<Avisos />} />
-        <Route path="/cadastro-avisos" element={<CadastroAviso />} />
+
+        {/* rotas protegidas por role */}
+        <Route
+          path="/cadastro-usuario"
+          element={
+            <RequireRole allowedRoles={["superadmin"]}>
+              <CadastroUsuario />
+            </RequireRole>
+          }
+        />
+
+        <Route
+          path="/cadastro-materia"
+          element={
+            <RequireRole allowedRoles={["superadmin", "admin"]}>
+              <CadastroMateria />
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/noticias"
+          element={
+            <RequireRole allowedRoles={["superadmin", "admin", "editor"]}>
+              <Noticias />
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/cadastro-noticia"
+          element={
+            <RequireRole allowedRoles={["superadmin", "admin", "editor"]}>
+              <CadastroNoticias />
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/avisos"
+          element={
+            <RequireRole allowedRoles={["superadmin", "admin", "editor"]}>
+              <Avisos />
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/cadastro-avisos"
+          element={
+            <RequireRole allowedRoles={["superadmin", "admin", "editor"]}>
+              <CadastroAviso />
+            </RequireRole>
+          }
+        />
       </Routes>
     </Router>
   );

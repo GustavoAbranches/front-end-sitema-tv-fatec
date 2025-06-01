@@ -67,6 +67,7 @@ export function useAuth() {
 
   // Função de logout
   const logout = useCallback(() => {
+    console.log("Logout chamado");
     logoutUser();
     setUser(null);
     setIsLoggedIn(false);

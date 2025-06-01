@@ -8,15 +8,27 @@ const DivAviso = () => {
   const latestAviso = avisos.length > 0 ? avisos[0] : null;
 
   if (loading) {
-    return <div>Carregando avisos...</div>;
+    return (
+      <div className="bg-mediumOrange text-center text-primaryBlue py-2 px-1">
+        Carregando avisos...
+      </div>
+    );
   }
 
   if (error) {
-    return <div>Erro ao carregar os avisos: {error}</div>;
+    return (
+      <div className="bg-mediumOrange text-center text-primaryBlue py-2 px-1">
+        Erro ao carregar os avisos: {error}
+      </div>
+    );
   }
 
   if (!latestAviso) {
-    return <div>Nenhum aviso disponível.</div>;
+    return (
+      <div className="bg-mediumOrange text-center text-primaryBlue py-2 px-1">
+        Nenhum aviso disponível.
+      </div>
+    );
   }
 
   return (
