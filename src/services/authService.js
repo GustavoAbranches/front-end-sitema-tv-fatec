@@ -21,12 +21,7 @@ export const loginUser = async (email, senha) => {
 };
 
 // Função para registrar usuário
-export const registerUser = async (
-  nome,
-  email,
-  senha,
-  role = "editor",
-) => {
+export const registerUser = async (nome, email, senha, role = "editor") => {
   try {
     const response = await api.post("/auth/register", {
       nome,

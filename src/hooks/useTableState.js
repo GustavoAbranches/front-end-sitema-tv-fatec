@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 export const useTableState = () => {
-    const [sorting, setSorting] = useState([]);
-    const [columnFilters, setColumnFilters] = useState([]);
+  const [sorting, setSorting] = useState([]);
+  const [columnFilters, setColumnFilters] = useState([]);
 
-    return {
-        sorting,
-        setSorting,
-        columnFilters,
-        setColumnFilters,
-    };
+  return {
+    sorting,
+    setSorting,
+    columnFilters,
+    setColumnFilters,
+  };
 };

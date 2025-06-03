@@ -47,23 +47,20 @@ export function useAuth() {
   }, []);
 
   // Função de registro
-  const register = useCallback(
-    async (nome, email, senha, role = "editor") => {
-      setLoading(true);
-      setError(null);
+  const register = useCallback(async (nome, email, senha, role = "editor") => {
+    setLoading(true);
+    setError(null);
 
-      try {
-        const data = await registerUser(nome, email, senha, role);
-        return data;
-      } catch (err) {
-        setError(err.message);
-        throw err;
-      } finally {
-        setLoading(false);
-      }
-    },
-    [],
-  );
+    try {
+      const data = await registerUser(nome, email, senha, role);
+      return data;
+    } catch (err) {
+      setError(err.message);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   // Função de logout
   const logout = useCallback(() => {
