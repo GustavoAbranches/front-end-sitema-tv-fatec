@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNoticias } from "../hooks/useNoticias";
+import { useAvisos } from "../hooks/useAvisos";
 
 import InputCad from "../components/Form_components/InputCad";
 import ButtonCad from "../components/Form_components/ButtonCad";
@@ -8,19 +8,19 @@ import FormContainer from "../components/Form_components/FormContainer";
 import NavigateButton from "../components/NavigateButton";
 import DivSection from "../components/DivSection";
 
-const CadastroNoticias = () => {
+const CadastroAviso = () => {
   const [success, setSuccess] = useState();
-  const [noticiaData, setNoticiaData] = useState({
+  const [avisoData, setAvisoData] = useState({
     titulo: "",
+    data: "",
     descricao: "",
-    data_publicacao: "",
-    data_expiracao: "",
+    publico_destino: "",
   });
-  const { addNoticia, noticias, loading, error } = useNoticias();
+  const { addAviso, avisos, loading, error } = useAvisos();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNoticiaData((prev) => ({
+    setAvisoData((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -30,16 +30,16 @@ const CadastroNoticias = () => {
     e.preventDefault();
 
     try {
-      await addNoticia(noticiaData);
+      await addAviso(avisoData);
 
       setSuccess(true);
-      setNoticiaData({
+      setAvisoData({
         titulo: "",
         descricao: "",
-        data_publicacao: "",
-        data_expiracao: "",
+        data: "",
+        publico_destino: "",
       });
-      alert("Notícia registrada com sucesso");
+      alert("Aviso registrada com sucesso");
     } catch (err) {
       alert("Erro no registro");
     }
@@ -48,18 +48,18 @@ const CadastroNoticias = () => {
   return (
     <div className="flex">
       <DivSection />
-      <FormContainer title="Cadastro Notícias" onSubmit={handleSubmit}>
+      <FormContainer title="Cadastro Avisos" onSubmit={handleSubmit}>
         <AlertMessage type="error" message={error} />
 
         <AlertMessage
           type="success"
-          message={success ? "Notícia registrada com sucesso!" : ""}
+          message={success ? "Aviso registrada com sucesso!" : ""}
         />
 
         <InputCad
           label="Título"
           name="titulo"
-          value={noticiaData.titulo}
+          value={avisoData.titulo}
           onChange={handleChange}
           required
           disabled={loading}
@@ -68,7 +68,7 @@ const CadastroNoticias = () => {
         <InputCad
           label="Descrição"
           name="descricao"
-          value={noticiaData.descricao}
+          value={avisoData.descricao}
           onChange={handleChange}
           required
           disabled={loading}
@@ -76,19 +76,18 @@ const CadastroNoticias = () => {
 
         <InputCad
           type="date"
-          label="Data Publicação"
-          name="data_publicacao"
-          value={noticiaData.data_publicacao}
+          label="Data"
+          name="data"
+          value={avisoData.data}
           onChange={handleChange}
           required
           disabled={loading}
         />
 
         <InputCad
-          type="date"
-          label="Data Expiração"
-          name="data_expiracao"
-          value={noticiaData.data_expiracao}
+          label="Publico Destino"
+          name="publico_destino"
+          value={avisoData.publico_destino}
           onChange={handleChange}
           required
           disabled={loading}
@@ -103,11 +102,11 @@ const CadastroNoticias = () => {
           >
             Registrar
           </ButtonCad>
-          <NavigateButton rota="/noticias" text="Voltar" />
+          <NavigateButton rota="/avisos" text="Voltar" />
         </div>
       </FormContainer>
     </div>
   );
 };
 
-export default CadastroNoticias;
+export default CadastroAviso;

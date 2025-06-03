@@ -24,11 +24,67 @@ const CadastroHorario = () => {
   });
   const { addHorario, horarios, loading, error } = useHorario();
 
-  const gerarOptions = (campo) => [
+  const optionsCurso = [
     { label: "Selecione...", value: "" },
-    ...[...new Set(horarios.map((h) => h[campo]))]
-      .filter((item) => item) // remove nulos/vazios
-      .map((item) => ({ label: item, value: item })),
+    {
+      label: "Análise e Desenvolvimento de Sistemas",
+      value: "Análise e Desenvolvimento de Sistemas",
+    },
+    { label: "Design de Midias Digitais", value: "Design de Midias Digitaiss" },
+    { label: "Logistica", value: "Logistica" },
+    { label: "Secretariado", value: "Secretariado" },
+    { label: "Articulado Médio Superior", value: "Articulado Médio Superior" },
+    { label: "Jogos Digitais", value: "Jogos Digitais" },
+  ];
+
+  const optionsTurno = [
+    { label: "Selecione...", value: "" },
+    { label: "Manhã", value: "Manhã" },
+    { label: "Tarde", value: "Tarde" },
+    { label: "Noite", value: "Noite" },
+  ];
+
+  const optionsDia = [
+    { label: "Selecione...", value: "" },
+    { label: "Segunda", value: "Segunda" },
+    { label: "Terça", value: "Terça" },
+    { label: "Quarta", value: "Quarta" },
+    { label: "Quinta", value: "Quinta" },
+    { label: "Sexta", value: "Sexta" },
+    { label: "Sábado", value: "Sábado" },
+  ];
+
+  const optionsSemestre = [
+    { label: "Selecione...", value: "" },
+    { label: "1º Semestre", value: "1" },
+    { label: "2º Semestre", value: "2" },
+    { label: "3º Semestre", value: "3" },
+    { label: "4º Semestre", value: "4" },
+    { label: "5º Semestre", value: "5" },
+    { label: "6º Semestre", value: "6" },
+  ];
+
+  const horarioInicialOptions = [
+    { label: "Selecione...", value: "" },
+    { label: "07:40", value: "07:40:00" },
+    { label: "09:30", value: "09:30:00" },
+    { label: "11:10", value: "11:10:00" },
+    { label: "11:20", value: "11:20:00" },
+    { label: "13:50", value: "13:50:00" },
+    { label: "15:40", value: "15:40:00" },
+    { label: "19:00", value: "19:00:00" },
+    { label: "20:50", value: "20:50:00" },
+  ];
+
+  const horarioFinalOptions = [
+    { label: "Selecione...", value: "" },
+    { label: "09:20", value: "09:20:00" },
+    { label: "11:10", value: "11:10:00" },
+    { label: "13:00", value: "13:00:00" },
+    { label: "15:40", value: "15:40:00" },
+    { label: "17:20", value: "17:20:00" },
+    { label: "20:40", value: "20:40:00" },
+    { label: "22:30", value: "22:30:00" },
   ];
 
   const handleChange = (e) => {
@@ -79,7 +135,7 @@ const CadastroHorario = () => {
           name="curso"
           value={horarioData.curso}
           onChange={handleChange}
-          options={gerarOptions("curso")}
+          options={optionsCurso}
           disabled={loading}
         />
 
@@ -88,7 +144,7 @@ const CadastroHorario = () => {
           name="dia_semana"
           value={horarioData.dia_semana}
           onChange={handleChange}
-          options={gerarOptions("dia_semana")}
+          options={optionsDia}
           disabled={loading}
         />
 
@@ -124,7 +180,7 @@ const CadastroHorario = () => {
           name="horario_inicial"
           value={horarioData.horario_inicial}
           onChange={handleChange}
-          options={gerarOptions("horario_inicial")}
+          options={horarioInicialOptions}
           disabled={loading}
         />
 
@@ -133,7 +189,7 @@ const CadastroHorario = () => {
           name="horario_final"
           value={horarioData.horario_final}
           onChange={handleChange}
-          options={gerarOptions("horario_final")}
+          options={horarioFinalOptions}
           disabled={loading}
         />
 
@@ -142,7 +198,7 @@ const CadastroHorario = () => {
           name="semestre"
           value={horarioData.semestre}
           onChange={handleChange}
-          options={gerarOptions("semestre")}
+          options={optionsSemestre}
           disabled={loading}
         />
 
@@ -151,7 +207,7 @@ const CadastroHorario = () => {
           name="turno"
           value={horarioData.turno}
           onChange={handleChange}
-          options={gerarOptions("turno")}
+          options={optionsTurno}
           disabled={loading}
         />
 

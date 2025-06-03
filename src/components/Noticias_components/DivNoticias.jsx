@@ -4,8 +4,15 @@ import BgImage from "../../assets/fatec-arcos.jpg";
 const DivNoticias = () => {
   const { noticias, loading, error } = useNoticias();
 
-  // Get the latest news (first item) or show default message
-  const latestNoticia = noticias.length > 0 ? noticias[0] : null;
+  const hoje = new Date().toISOString().split("T")[0]; // 'YYYY-MM-DD'
+
+  // Filtra as notícias que são da data de hoje
+  const noticiasDeHoje = noticias.filter(
+    (noticia) => noticia.data_publicacao === hoje,
+  );
+
+  // Pega a primeira notícia de hoje, se existir
+  const latestNoticia = noticiasDeHoje.length > 0 ? noticiasDeHoje[0] : null;
 
   if (loading) {
     return (
@@ -56,7 +63,7 @@ const DivNoticias = () => {
         ) : (
           <div className="flex items-center justify-center h-full">
             <p className="2xl:text-2xl lg:text-lg text-center">
-              Nenhuma notícia disponível no momento
+              Nenhuma notícia para hoje
             </p>
           </div>
         )}

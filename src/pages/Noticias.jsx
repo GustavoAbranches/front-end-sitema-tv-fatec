@@ -11,7 +11,10 @@ const Noticias = () => {
       </div>
       <div className="w-full">
         <TableNoticias />
-        <NavigateButton rota="/cadastro-noticia" text="Cadastrar" />
+
+        <div className="mb-10">
+          <NavigateButton rota="/cadastro-noticia" text="Cadastrar" />
+        </div>
       </div>
       <DivSection />
     </div>

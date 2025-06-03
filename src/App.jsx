@@ -7,11 +7,11 @@ import Horario from "./pages/Horario";
 import Tela from "./pages/Tela";
 import Vinheta from "./pages/Vinheta";
 import Materias from "./pages/Materias";
-import CadastroUsuario from "./pages/CadastroUsuario";
 import Noticias from "./pages/Noticias";
+import CadastroUsuario from "./pages/CadastroUsuario";
 import CadastroNoticias from "./pages/CadastroNoticias";
+import CadastroAviso from "./pages/CadastroAviso";
 import Avisos from "./pages/Avisos";
-import CadastroAviso from "./components/BarraLateral_components/CadastroAviso";
 import { RequireRole } from "./components/RequireRole";
 
 function App() {

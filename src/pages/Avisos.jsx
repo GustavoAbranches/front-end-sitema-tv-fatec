@@ -1,5 +1,5 @@
 import Sidebar from "../components/Sidebar";
-import TableNoticias from "../components/Noticias_components/TableNoticias";
+import TableAvisos from "../components/Aviso_components/TableAvisos";
 import NavigateButton from "../components/NavigateButton";
 import DivSection from "../components/DivSection";
 
@@ -10,8 +10,10 @@ const Avisos = () => {
         <Sidebar />
       </div>
       <div className="w-full">
-        <TableNoticias />
-        <NavigateButton rota="/cadastro-noticia" text="Cadastrar" />
+        <TableAvisos />
+        <div className="mb-10">
+          <NavigateButton rota="/cadastro-avisos" text="Cadastrar" />
+        </div>
       </div>
       <DivSection />
     </div>

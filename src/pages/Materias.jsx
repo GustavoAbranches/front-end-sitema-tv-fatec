@@ -12,7 +12,9 @@ const Materias = () => {
         </div>
         <div className="w-full">
           <TableComponent />
-          <NavigateButton rota="/cadastro-materia" text="Cadastrar" />
+          <div className="mb-10">
+            <NavigateButton rota="/cadastro-materia" text="Cadastrar" />
+          </div>
         </div>
         <DivSection />
       </div>
