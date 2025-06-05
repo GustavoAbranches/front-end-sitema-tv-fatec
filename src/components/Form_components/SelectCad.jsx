@@ -9,7 +9,7 @@ const SelectCad = ({
 }) => {
   return (
     <div className={`flex flex-col text-white font-verdana ${className}`}>
-      <label htmlFor={name}>{label}:</label>
+      <label className="px-4 font-bold mb-1" htmlFor={name}>{label}:</label>
       <select
         id={name}
         name={name}

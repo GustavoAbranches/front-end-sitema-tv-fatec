@@ -13,7 +13,7 @@ const InputCad = ({
     <div
       className={`flex w-full flex-col text-white font-verdana ${className}`}
     >
-      <label htmlFor={name}>{label}:</label>
+      <label className="px-4 font-bold mb-1" htmlFor={name}>{label}:</label>
       <input
         type={type}
         id={name}

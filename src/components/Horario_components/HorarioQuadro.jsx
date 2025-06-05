@@ -50,9 +50,12 @@ const HorarioQuadro = () => {
     }
     if (period === "Tarde") {
       return [
-        { start: "13:00", end: "14:50", label: "13:00" },
-        { start: "14:50", end: "16:40", label: "14:50" },
-        { start: "16:40", end: "18:30", label: "16:40", endLabel: "18:30" },
+       { start: "13:00", end: "13:50", label: "13:00" },
+        { start: "13:50", end: "14:40", label: "13:50" },
+        { start: "14:40", end: "15:40", label: "14:40" },
+        { start: "15:50", end: "16:30", label: "15:50" },
+        { start: "16:30", end: "17:20", label: "16:30" },
+        { start: "17:20", end: "18:30", label: "17:40", endLabel: "18:30" },
       ];
     }
     return [
@@ -206,12 +209,15 @@ const HorarioQuadro = () => {
 
   // Calcula a largura baseada no colspan
   const getCellWidth = (colspan) => {
-    const baseWidth = "2xl:w-[350px] lg:w-[290px]";
+    const baseWidth = "2xl:w-[350px] lg:w-[150px]";
     if (colspan === 2) {
-      return "2xl:w-[710px] lg:w-[590px]";
+      return "2xl:w-[710px] lg:w-[325px]";
     }
     if (colspan === 3) {
-      return "2xl:w-[1070px] lg:w-[890px]";
+      return "2xl:w-[1070px] lg:w-[500px]";
+    }
+    if (colspan === 4) {
+      return "2xl:w-[1070px] lg:w-[670px]";
     }
     return baseWidth;
   };
@@ -219,7 +225,7 @@ const HorarioQuadro = () => {
   // Tratamento de loading e erro
   if (loading) {
     return (
-      <div className="flex items-center justify-center w-full min-h-screen bg-gray-50">
+      <div className="flex w-full min-h-screen bg-gray-50">
         <div className="text-xl text-gray-600">Carregando...</div>
       </div>
     );
@@ -262,8 +268,8 @@ const HorarioQuadro = () => {
       {/* Grid Unificada - Header dos Horários + Disciplinas */}
       <div className="2xl:h-[800px] space-y-3">
         {/* Linha do cabeçalho com horários */}
-        <div className="grid grid-cols-4 gap-4 mr-6">
-          <div className="flex justify-center items-center 2xl:w-36 lg:w-28 text-right ">
+        <div className="grid grid-cols-8 gap-2 mr-6">
+          <div className="flex justify-center items-center 2xl:w-36 lg:w-28 text-right">
             <span className="2xl:text-4xl 2xl:font-bold lg:text-lg lg:font-semibold text-primaryBlue">
               Horários
             </span>
@@ -275,13 +281,13 @@ const HorarioQuadro = () => {
             return (
               <div
                 key={index}
-                className="2xl:h-[100px] 2xl:w-[400px] lg:h-[50px] lg:w-[290px] flex flex-col items-start justify-center text-primaryBlue"
+                className="2xl:h-[100px] 2xl:w-[400px] lg:h-[50px] lg:w-[170px] flex flex-col items-start justify-center text-primaryBlue ml-6"
               >
                 {!slot.isEmpty ? (
                   <>
                     <div className="relative 2xl:w-[40px] 2xl:h-[40px] lg:w-[20px] lg:h-[20px] bg-orange-400 rounded-md mb-1"></div>
                     {!isLast && (
-                      <div className="absolute z-10 2xl:mb-[30px] lg:mb-[25px] 2xl:w-[400px] 2xl:h-[10px] lg:w-[300px] lg:h-[5px] bg-orange-400"></div>
+                      <div className="absolute z-10 2xl:mb-[30px] lg:mb-[25px] 2xl:w-[400px] 2xl:h-[10px] lg:w-[154px] lg:h-[5px] bg-orange-400"></div>
                     )}
                     <div className="flex items-center gap-2">
                       <span className="2xl:text-lg lg:text-sm 2xl:font-bold lg:font-semibold">
@@ -317,7 +323,7 @@ const HorarioQuadro = () => {
           const mergedCells = getMergedCellsForSemester(semester);
 
           return (
-            <div key={semester} className="grid grid-cols-4 gap-2">
+            <div key={semester} className="grid grid-cols-7">
               <div className="flex justify-center items-center 2xl:w-[300px] lg:w-[150px] text-right">
                 <span className="2xl:text-3xl lg:text-lg 2xl:font-bold lg:font-semibold text-primaryBlue">
                   {semester}° Semestre
@@ -329,7 +335,7 @@ const HorarioQuadro = () => {
                 return (
                   <div
                     key={index}
-                    className={`lg:p-3 rounded-lg shadow-md 2xl:h-[105px] lg:h-[60px] ${getCellWidth(colspan)} flex items-center justify-center ${getCardColor(discipline)}`}
+                    className={` shadow-md rounded-md 2xl:h-[155px] lg:h-[65px] ${getCellWidth(colspan)} flex items-center justify-center ${getCardColor(discipline)}`}
                     style={{ gridColumn: `span ${colspan}` }}
                   >
                     {discipline ? (
