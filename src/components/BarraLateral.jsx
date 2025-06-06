@@ -1,6 +1,6 @@
 import DivImagem from "./BarraLateral_components/DivImagem";
 import DivAviso from "./BarraLateral_components/DivAviso";
-import LogoFatec from "../assets/fatec-logo.png";
+import LogoFatec from "../assets/fatec-logo.svg";
 import BgImage from "../assets/fatec-arcos.jpg";
 
 export default function BarraLateral() {

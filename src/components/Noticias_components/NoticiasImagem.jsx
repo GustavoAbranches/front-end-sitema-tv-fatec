@@ -1,4 +1,4 @@
-import Aviso from "./Aviso";
+import DivNoticias from "./DivNoticias";
 
 const NoticiasImagem = () => {
   return (
@@ -6,7 +6,7 @@ const NoticiasImagem = () => {
       <div className="2xl:h-[702px] lg:h-[495px]">
         <h1 className="text-2xl font-bold">Conteúdo Principal</h1>
       </div>
-      <Aviso />
+      <DivNoticias />
     </div>
   );
 };

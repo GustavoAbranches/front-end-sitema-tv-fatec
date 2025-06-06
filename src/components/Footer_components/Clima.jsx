@@ -26,7 +26,7 @@ const Clima = ({ day, text }) => {
 
   if (loading) {
     return (
-      <div className="flex justify-evenly items-center">
+      <div className="relative flex bg-white p-8 justify-around items-center lg:w-[20rem] 2xl:w-[35rem]">
         <span className="text-blueGray">Carregando clima...</span>
       </div>
     );

@@ -10,17 +10,17 @@ function Admin() {
 
         <div className="space-y-4">
           <button
-            onClick={() => navigate("/painel-materias")}
+            onClick={() => navigate("/materias")}
             className="w-full bg-white text-blue-900 p-3 rounded-lg font-semibold hover:bg-gray-100 transition"
           >
             Painel de Matérias
           </button>
 
           <button
-            onClick={() => navigate("/dashboard")}
+            onClick={() => navigate("/cadastro")}
             className="w-full bg-white text-blue-900 p-3 rounded-lg font-semibold hover:bg-gray-100 transition"
           >
-            Dashboard
+            Cadastros de Usuário
           </button>
         </div>
       </div>

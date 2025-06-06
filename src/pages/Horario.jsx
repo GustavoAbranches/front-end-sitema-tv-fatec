@@ -14,6 +14,7 @@ const Horario = () => {
       <div className="flex flex-1">
         <Sidediv />
         <HorarioQuadro />
+
         <DivSection />
       </div>
       <Footer />
