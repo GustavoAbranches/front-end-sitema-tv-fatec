@@ -1,18 +1,29 @@
-import { Box, Table, TableContainer, Paper } from "@mui/material";
-import { memo, useMemo, useCallback } from "react";
+import {
+  Box,
+  Table,
+  TableContainer,
+  Paper,
+  TableFooter,
+  TableRow,
+  TableCell,
+} from "@mui/material";
+import {
+  useEffect,
+  useState,
+  useRef,
+  memo,
+  useMemo,
+} from "react";
 import {
   useReactTable,
   getCoreRowModel,
   getSortedRowModel,
-  getPaginationRowModel,
   getFilteredRowModel,
 } from "@tanstack/react-table";
 import { FilterInputs } from "./FilterInputs";
 import { TableHeader } from "./TableHeader";
 import { CustomTableBody } from "./TableBody";
-import { TablePagination } from "./TablePagination";
 
-// Memoiza o componente principal
 export const DataTable = memo(
   ({
     data,
@@ -23,15 +34,37 @@ export const DataTable = memo(
     setColumnFilters,
     renderActions,
     showFilters = true,
-    showPagination = true,
   }) => {
-    // Memoiza os dados para evitar recriações desnecessárias
-    const memoizedData = useMemo(() => data, [data]);
+    const [visibleData, setVisibleData] = useState([]);
+    const [itemsToShow, setItemsToShow] = useState(30);
+    const observerRef = useRef(null);
 
-    // Memoiza as colunas caso não venham memoizadas
+    // Atualiza os dados visíveis sempre que os dados ou o limite mudam
+    useEffect(() => {
+      setVisibleData(data.slice(0, itemsToShow));
+    }, [data, itemsToShow]);
+
+    // Setup IntersectionObserver para detectar fim da lista e carregar mais dados
+    useEffect(() => {
+      if (observerRef.current) observerRef.current.disconnect();
+
+      const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          setItemsToShow(prev => Math.min(prev + 30, data.length));
+        }
+      });
+
+      const sentinel = document.getElementById("lazy-sentinel");
+      if (sentinel) observer.observe(sentinel);
+
+      observerRef.current = observer;
+
+      return () => observer.disconnect();
+    }, [data.length]);
+
+    const memoizedData = useMemo(() => visibleData, [visibleData]);
     const memoizedColumns = useMemo(() => columns, [columns]);
 
-    // Memoiza a configuração da tabela
     const tableConfig = useMemo(
       () => ({
         data: memoizedData,
@@ -42,12 +75,11 @@ export const DataTable = memo(
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-        // Otimizações importantes
-        enableRowSelection: false, // desabilita se não usar
-        enableColumnResizing: false, // desabilita se não usar
-        enableColumnReordering: false, // desabilita se não usar
-        debugTable: false, // desabilita debug em produção
+        // PAGINAÇÃO REMOVIDA PARA SCROLL INFINITO
+        enableRowSelection: false,
+        enableColumnResizing: false,
+        enableColumnReordering: false,
+        debugTable: false,
       }),
       [
         memoizedData,
@@ -56,20 +88,18 @@ export const DataTable = memo(
         columnFilters,
         setSorting,
         setColumnFilters,
-      ],
+      ]
     );
 
     const table = useReactTable(tableConfig);
 
-    // Memoiza o estilo do container
     const containerStyle = useMemo(
       () => ({
         borderRadius: 2,
         boxShadow: 3,
-        // Adiciona otimização CSS
         contain: "layout style paint",
       }),
-      [],
+      []
     );
 
     const boxStyle = useMemo(() => ({ padding: 2 }), []);
@@ -81,12 +111,23 @@ export const DataTable = memo(
           <Table stickyHeader>
             <TableHeader table={table} showActions={!!renderActions} />
             <CustomTableBody table={table} renderActions={renderActions} />
+            <TableFooter>
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length + (renderActions ? 1 : 0)}
+                  style={{ padding: 0 }}
+                >
+                  {/* Sentinel para detectar scroll no final */}
+                  <div id="lazy-sentinel" style={{ height: 1 }} />
+                </TableCell>
+              </TableRow>
+            </TableFooter>
           </Table>
         </TableContainer>
-        {showPagination && <TablePagination table={table} />}
+        {/* PAGINAÇÃO REMOVIDA */}
       </Box>
     );
-  },
+  }
 );
 
 DataTable.displayName = "DataTable";

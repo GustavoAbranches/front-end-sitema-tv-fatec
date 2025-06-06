@@ -29,7 +29,7 @@ function App() {
         <Route
           path="/cadastro-usuario"
           element={
-            <RequireRole allowedRoles={["superadmin"]}>
+           <RequireRole allowedRoles={["superadmin"]}>
               <CadastroUsuario />
             </RequireRole>
           }
