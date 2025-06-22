@@ -1,4 +1,4 @@
-const AlertMessage = ({ type = "info", message, className = "" }) => {
+const AlertMessage = ({ type = "info", message }) => {
   const getAlertStyles = () => {
     switch (type) {
       case "error":
@@ -16,7 +16,7 @@ const AlertMessage = ({ type = "info", message, className = "" }) => {
 
   return (
     <div
-      className={`alert-message ${className}`}
+      className="flex justify-center items-center w-full h-10 bg-white rounded-md"
       style={{ ...getAlertStyles(), marginBottom: "10px" }}
     >
       {message}

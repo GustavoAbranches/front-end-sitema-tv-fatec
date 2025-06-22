@@ -14,6 +14,7 @@ const CadastroUsuario = () => {
     nome: "",
     email: "",
     senha: "",
+    setor: "",
     role: "editor",
   });
 
@@ -47,6 +48,7 @@ const CadastroUsuario = () => {
         formData.email,
         formData.senha,
         formData.role,
+        formData.setor,
       );
 
       setSuccess(true);
@@ -54,20 +56,21 @@ const CadastroUsuario = () => {
         nome: "",
         email: "",
         senha: "",
+        setor: "",
         role: "editor",
       });
 
-      console.log("Usuário registrado com sucesso!");
+      setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
-      console.log("Erro no registro:", err.message);
+      setSuccess(false);
     }
   };
 
   return (
     <div className="flex">
       <DivSection />
-      <FormContainer title="Cadastrar Usuário" onSubmit={handleSubmit}>
-        <AlertMessage type="error" message={error} />
+      <FormContainer title="Cadastro Usuário" onSubmit={handleSubmit}>
+        <AlertMessage type="error" message={error ? error : ""} />
 
         <AlertMessage
           type="success"
@@ -100,6 +103,14 @@ const CadastroUsuario = () => {
           value={formData.senha}
           onChange={handleChange}
           required
+          disabled={loading}
+        />
+
+        <InputCad
+          label="Setor"
+          name="setor"
+          value={formData.setor}
+          onChange={handleChange}
           disabled={loading}
         />
 

@@ -113,9 +113,9 @@ const CadastroHorario = () => {
         semestre: "",
         turno: "",
       });
-      alert("Horario registrado com sucesso");
+      setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
-      alert("Erro no registro");
+      setSuccess(false);
     }
   };
 
@@ -123,11 +123,11 @@ const CadastroHorario = () => {
     <div className="flex">
       <DivSection />
       <FormContainer title="Cadastro Disciplina" onSubmit={handleSubmit}>
-        <AlertMessage type="error" message={error} />
+        <AlertMessage type="error" message={error ? error : ""} />
 
         <AlertMessage
           type="success"
-          message={success ? "Usuário registrado com sucesso!" : ""}
+          message={success ? "Matéria registrada com sucesso!" : ""}
         />
 
         <SelectCad

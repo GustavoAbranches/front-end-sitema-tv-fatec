@@ -7,7 +7,7 @@ const Materias = () => {
   return (
     <>
       <div className="flex">
-        <div className="flex items-start">
+        <div className="h-screen">
           <Sidebar />
         </div>
         <div className="w-full">

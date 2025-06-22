@@ -39,17 +39,17 @@ const CadastroAviso = () => {
         data: "",
         publico_destino: "",
       });
-      alert("Aviso registrada com sucesso");
+      setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
-      alert("Erro no registro");
+      setSuccess(false);
     }
   };
 
   return (
     <div className="flex">
       <DivSection />
-      <FormContainer title="Cadastro Avisos" onSubmit={handleSubmit}>
-        <AlertMessage type="error" message={error} />
+      <FormContainer title="Cadastro Aviso" onSubmit={handleSubmit}>
+        <AlertMessage type="error" message={error ? error : ""} />
 
         <AlertMessage
           type="success"

@@ -39,17 +39,17 @@ const CadastroNoticias = () => {
         data_publicacao: "",
         data_expiracao: "",
       });
-      alert("Notícia registrada com sucesso");
+      setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
-      alert("Erro no registro");
+      setSuccess(false);
     }
   };
 
   return (
     <div className="flex">
       <DivSection />
-      <FormContainer title="Cadastro Notícias" onSubmit={handleSubmit}>
-        <AlertMessage type="error" message={error} />
+      <FormContainer title="Cadastro Notícia" onSubmit={handleSubmit}>
+        <AlertMessage type="error" message={error ? error : ""} />
 
         <AlertMessage
           type="success"

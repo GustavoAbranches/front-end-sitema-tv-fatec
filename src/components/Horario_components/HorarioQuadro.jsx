@@ -134,7 +134,7 @@ const HorarioQuadro = () => {
     });
   };
 
-  // Função para calcular células mescladas por semestre - MELHORADA
+  // Função para calcular células mescladas por semestre
   const getMergedCellsForSemester = (semester) => {
     const cells = [];
     let i = 0;
@@ -206,12 +206,12 @@ const HorarioQuadro = () => {
 
   // Calcula a largura baseada no colspan
   const getCellWidth = (colspan) => {
-    const baseWidth = "2xl:w-[350px] lg:w-[290px]";
+    const baseWidth = "2xl:w-[390px] lg:w-[290px]";
     if (colspan === 2) {
-      return "2xl:w-[710px] lg:w-[590px]";
+      return "2xl:w-[790px] lg:w-[590px]";
     }
     if (colspan === 3) {
-      return "2xl:w-[1070px] lg:w-[890px]";
+      return "2xl:w-[1560px] lg:w-[890px]";
     }
     return baseWidth;
   };
@@ -279,7 +279,7 @@ const HorarioQuadro = () => {
               >
                 {!slot.isEmpty ? (
                   <>
-                    <div className="relative 2xl:w-[40px] 2xl:h-[40px] lg:w-[20px] lg:h-[20px] bg-orange-400 rounded-md mb-1"></div>
+                    <div className="relative 2xl:w-[30px] 2xl:h-[30px] lg:w-[20px] lg:h-[20px] bg-orange-400 rounded-md mb-1"></div>
                     {!isLast && (
                       <div className="absolute z-10 2xl:mb-[30px] lg:mb-[25px] 2xl:w-[400px] 2xl:h-[10px] lg:w-[300px] lg:h-[5px] bg-orange-400"></div>
                     )}

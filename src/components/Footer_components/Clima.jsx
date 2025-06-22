@@ -4,6 +4,7 @@ import axios from "axios";
 const Clima = ({ day, text }) => {
   const [clima, setClima] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [erro, setErro] = useState(null);
 
   const cidade = "carapicuiba";
   const apiKey = "9c14b65fc9c84bdcb7b191508252204";
@@ -15,7 +16,7 @@ const Clima = ({ day, text }) => {
       setClima(response.data);
       setLoading(false);
     } catch (error) {
-      console.error(error);
+      console.error("Erro ao buscar o clima:", error);
       setLoading(false);
     }
   };
@@ -28,6 +29,14 @@ const Clima = ({ day, text }) => {
     return (
       <div className="relative flex bg-white p-8 justify-around items-center lg:w-[20rem] 2xl:w-[35rem]">
         <span className="text-blueGray">Carregando clima...</span>
+      </div>
+    );
+  }
+
+  if (erro || !clima) {
+    return (
+      <div className="relative flex bg-white p-8 justify-center items-center lg:w-[20rem] 2xl:w-[35rem]">
+        <span className="text-red-600 font-semibold">Erro: {erro}</span>
       </div>
     );
   }
