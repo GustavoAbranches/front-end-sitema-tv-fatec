@@ -66,6 +66,6 @@ export const getToken = () => {
 
 //busca todos os usuarios cadastrados
 export const listUsers = async () => {
-  const response = await api.get("auth/usuarios");
+  const response = await api.get("/auth/usuarios");
   return response.data;
 }

@@ -17,7 +17,7 @@ function Admin() {
           </button>
 
           <button
-            onClick={() => navigate("/cadastro")}
+            onClick={() => navigate("/cadastro-usuario")}
             className="w-full bg-white text-blue-900 p-3 rounded-lg font-semibold hover:bg-gray-100 transition"
           >
             Cadastros de Usuário

@@ -5,8 +5,8 @@ import DivSection from "../components/DivSection";
 
 const Avisos = () => {
   return (
-    <div className="flex">
-      <div className="h-screen">
+    <div className="flex min-h-screen">
+      <div>
         <Sidebar />
       </div>
       <div className="w-full">
