@@ -8,6 +8,7 @@ import Tela from "./pages/Tela";
 import Vinheta from "./pages/Vinheta";
 import Materias from "./pages/Materias";
 import Noticias from "./pages/Noticias";
+import Usuarios from "./pages/Usarios";
 import CadastroUsuario from "./pages/CadastroUsuario";
 import CadastroNoticias from "./pages/CadastroNoticias";
 import CadastroAviso from "./pages/CadastroAviso";
@@ -31,6 +32,15 @@ function App() {
           element={
             //<RequireRole allowedRoles={["superadmin"]}>
             <CadastroUsuario />
+            //</RequireRole>
+          }
+        />
+
+        <Route
+          path="/usuarios"
+          element={
+            //<RequireRole allowedRoles={["superadmin"]}>
+            <Usuarios />
             //</RequireRole>
           }
         />

@@ -47,8 +47,8 @@ const CadastroUsuario = () => {
         formData.nome,
         formData.email,
         formData.senha,
-        formData.role,
         formData.setor,
+        formData.role,
       );
 
       setSuccess(true);
@@ -133,7 +133,7 @@ const CadastroUsuario = () => {
             Registrar
           </ButtonCad>
 
-          <NavigateButton rota="/materias" text="Voltar" />
+          <NavigateButton rota="/usuarios" text="Voltar" />
         </div>
       </FormContainer>
     </div>
