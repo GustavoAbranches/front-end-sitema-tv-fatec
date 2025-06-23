@@ -10,6 +10,12 @@ export const postNoticias = async (noticia) => {
   return response.data;
 };
 
+export const putNoticias = async (id, noticiaAtualizada) => {
+  const response = await api.put(`/api/noticias/${id}`, noticiaAtualizada);
+  return response.data;
+};
+
+
 export const deleteNoticias = async (id) => {
   const response = await api.delete(`/api/noticias/${id}`);
   return response.data;

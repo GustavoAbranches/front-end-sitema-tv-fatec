@@ -10,6 +10,11 @@ export const postAvisos = async (aviso) => {
   return response.data;
 };
 
+export const putAvisos = async (id, avisoAtualizado) => {
+  const response = await api.put(`/api/avisos/${id}`, avisoAtualizado);
+  return response.data;
+};
+
 export const deleteAvisos = async (id) => {
   const response = await api.delete(`/api/avisos/${id}`);
   return response.data;

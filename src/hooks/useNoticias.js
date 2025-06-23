@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {
   getNoticias,
   postNoticias,
+  putNoticias,
   deleteNoticias,
 } from "../services/noticiaServices";
 
@@ -44,6 +45,17 @@ export function useNoticias() {
     }
   };
 
+  const updateNoticia = async (id, dadosAtualizados) => {
+    try {
+      const data = await putNoticias(id, dadosAtualizados);
+      setNoticias((prev) =>
+        prev.map((noticia) => (noticia.id === id ? data : noticia))
+      );
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   // Chama fetchNoticias uma vez quando o hook é montado
   useEffect(() => {
     fetchNoticias();
@@ -56,6 +68,7 @@ export function useNoticias() {
     error,
     fetchNoticias,
     addNoticia,
+    updateNoticia,
     removeNoticia,
   };
 }

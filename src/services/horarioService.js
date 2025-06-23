@@ -10,6 +10,11 @@ export const postHorario = async (horario) => {
   return response.data;
 };
 
+export const putHorario = async (id, horarioAtualizado) => {
+  const response = await api.put(`/api/horarios/${id}`, horarioAtualizado);
+  return response.data;
+};
+
 export const deleteHorario = async (id) => {
   const response = await api.delete(`/api/horarios/${id}`);
   return response.data;

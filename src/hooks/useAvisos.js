@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAvisos, postAvisos, deleteAvisos } from "../services/avisoService";
+import { getAvisos, postAvisos, deleteAvisos, putAvisos } from "../services/avisoService";
 
 export function useAvisos() {
   const [avisos, setAvisos] = useState([]);
@@ -27,6 +27,17 @@ export function useAvisos() {
     }
   };
 
+  const updateAviso = async (id, dadosAtualizados) => {
+    try {
+      const data = await putAvisos(id, dadosAtualizados);
+      setAvisos((prev) =>
+        prev.map((aviso) => (aviso.id === id ? data : aviso))
+      );
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   // Função para remover uma notícia
   const removeAvisos = async (id) => {
     try {
@@ -49,6 +60,7 @@ export function useAvisos() {
     error,
     fetchAvisos,
     addAviso,
+    updateAviso,
     removeAvisos,
   };
 }

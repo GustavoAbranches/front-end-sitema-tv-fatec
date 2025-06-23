@@ -1,5 +1,6 @@
-import { useCallback } from "react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+
+import { useNavigate } from "react-router";
 
 import { useAvisos } from "../../hooks/useAvisos";
 import { useTableState } from "../../hooks/useTableState";
@@ -8,6 +9,7 @@ import { LoadingSpinner } from "../Table_components/LoadingSpinner";
 import { ErrorMessage } from "../Table_components/ErrorMessage";
 import { DataTable } from "../Table_components/DataTable";
 import { DeleteButton } from "../Table_components/DeleteButton";
+import { EditButton } from "../EditButton";
 
 const TableAvisos = () => {
   const { avisos, loading, error, removeAvisos } = useAvisos();
@@ -15,6 +17,7 @@ const TableAvisos = () => {
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
 
+  const navigate = useNavigate();
   const columns = useNoticiasColumns();
 
   const handleDelete = useCallback(
@@ -30,12 +33,22 @@ const TableAvisos = () => {
     [removeAvisos],
   );
 
+  const handleEdit = useCallback(
+    (id) => {
+      navigate(`/cadastro-avisos/${id}`);
+    },
+    [navigate],
+  );
+
   const renderActions = useCallback(
     (row) => (
-      <DeleteButton
-        onDelete={() => handleDelete(row.id)}
-        confirmMessage="Tem certeza que deseja excluir este horário?"
-      />
+      <div className="flex space-x-2">
+        <EditButton onEdit={() => handleEdit(row.id)} title="Editar horário" />
+        <DeleteButton
+          onDelete={() => handleDelete(row.id)}
+          confirmMessage="Tem certeza que deseja excluir esse horário?"
+        />
+      </div>
     ),
     [handleDelete],
   );

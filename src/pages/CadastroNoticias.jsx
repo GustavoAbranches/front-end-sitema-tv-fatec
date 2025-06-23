@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNoticias } from "../hooks/useNoticias";
+
+import { useParams, useNavigate } from "react-router-dom";
 
 import InputCad from "../components/Form_components/InputCad";
 import ButtonCad from "../components/Form_components/ButtonCad";
@@ -10,13 +12,40 @@ import DivSection from "../components/DivSection";
 
 const CadastroNoticias = () => {
   const [success, setSuccess] = useState();
+  const [isEditing, setIsEditing] = useState(false);
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [noticiaData, setNoticiaData] = useState({
     titulo: "",
     descricao: "",
     data_publicacao: "",
     data_expiracao: "",
   });
-  const { addNoticia, noticias, loading, error } = useNoticias();
+  const { addNoticia, updateNoticia, noticias, loading, error } = useNoticias();
+
+  useEffect(() => {
+    if (id) {
+      setIsEditing(true);
+      if (noticias.length > 0) {
+        const noticiasEditar = noticias.find(
+          (noticia) => noticia.id === parseInt(id),
+        );
+        if (noticiasEditar) {
+          setNoticiaData({
+            titulo: noticiasEditar.titulo || "",
+            descricao: noticiasEditar.descricao || "",
+            data_publicacao: noticiasEditar.data_publicacao || "",
+            data_expiracao: noticiasEditar.data_expiracao || "",
+          });
+        } else {
+          console.error("Notícia não encontrada para o ID:", id);
+        }
+      }
+    } else {
+      setIsEditing(false);
+    }
+  }, [id, noticias]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,25 +59,36 @@ const CadastroNoticias = () => {
     e.preventDefault();
 
     try {
-      await addNoticia(noticiaData);
+      if (isEditing) {
+        await updateNoticia(parseInt(id), noticiaData);
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+          navigate("/noticias");
+        }, 2000);
+      } else {
+        await addNoticia(noticiaData);
 
-      setSuccess(true);
-      setNoticiaData({
-        titulo: "",
-        descricao: "",
-        data_publicacao: "",
-        data_expiracao: "",
-      });
-      setTimeout(() => setSuccess(false), 3000);
+        setSuccess(true);
+        setNoticiaData({
+          titulo: "",
+          descricao: "",
+          data_publicacao: "",
+          data_expiracao: "",
+        });
+        setTimeout(() => setSuccess(false), 3000);
+      }
     } catch (err) {
       setSuccess(false);
     }
   };
-
   return (
     <div className="flex">
       <DivSection />
-      <FormContainer title="Cadastro Notícia" onSubmit={handleSubmit}>
+      <FormContainer
+        title={isEditing ? "Editar Notícia" : "Cadastro Notícia"}
+        onSubmit={handleSubmit}
+      >
         <AlertMessage type="error" message={error ? error : ""} />
 
         <AlertMessage
@@ -99,9 +139,9 @@ const CadastroNoticias = () => {
             type="submit"
             disabled={loading}
             loading={loading}
-            loadingText="Registrando..."
+            loadingText={isEditing ? "Atualizando..." : "Registrando..."}
           >
-            Registrar
+            {isEditing ? "Atualizar" : "Registrar"}
           </ButtonCad>
           <NavigateButton rota="/noticias" text="Voltar" />
         </div>

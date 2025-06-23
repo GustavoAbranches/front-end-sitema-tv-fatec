@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   getHorarios,
   postHorario,
+  putHorario,
   deleteHorario,
 } from "../services/horarioService";
 
@@ -31,6 +32,17 @@ export function useHorario() {
     }
   };
 
+  const updateHorario = async (id, dadosAtualizados) => {
+    try {
+      const data = await putHorario(id, dadosAtualizados);
+      setHorarios((prev) =>
+        prev.map((horario) => (horario.id === id ? data : horario))
+      );
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   const removeHorario = async (id) => {
     try {
       await deleteHorario(id);
@@ -50,6 +62,7 @@ export function useHorario() {
     error,
     fetchHorarios,
     addHorario,
+    updateHorario,
     removeHorario,
   };
 }

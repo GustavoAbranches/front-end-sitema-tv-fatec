@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHorario } from "../hooks/useHorarios";
+
+import { useParams, useNavigate } from "react-router-dom";
 
 import InputCad from "../components/Form_components/InputCad";
 import ButtonCad from "../components/Form_components/ButtonCad";
@@ -11,6 +13,9 @@ import DivSection from "../components/DivSection";
 
 const CadastroHorario = () => {
   const [success, setSuccess] = useState();
+  const [isEditing, setIsEditing] = useState(false);
+  const { id } = useParams(); // Para capturar o ID da URL
+  const navigate = useNavigate();
   const [horarioData, setHorarioData] = useState({
     curso: "",
     dia_semana: "",
@@ -20,9 +25,39 @@ const CadastroHorario = () => {
     horario_inicial: "",
     horario_final: "",
     descricao: "",
+    semestre: "",
     turno: "",
   });
-  const { addHorario, horarios, loading, error } = useHorario();
+  const { addHorario, updateHorario, horarios, loading, error } = useHorario();
+
+  useEffect(() => {
+    if (id) {
+      setIsEditing(true);
+      if (horarios.length > 0) {
+        const horarioParaEditar = horarios.find(
+          (horario) => horario.id === parseInt(id),
+        );
+        if (horarioParaEditar) {
+          setHorarioData({
+            curso: horarioParaEditar.curso || "",
+            dia_semana: horarioParaEditar.dia_semana || "",
+            disciplina: horarioParaEditar.disciplina || "",
+            docente: horarioParaEditar.docente || "",
+            sala: horarioParaEditar.sala || "",
+            horario_inicial: horarioParaEditar.horario_inicial || "",
+            horario_final: horarioParaEditar.horario_final || "",
+            descricao: horarioParaEditar.descricao || "",
+            semestre: horarioParaEditar.semestre || "",
+            turno: horarioParaEditar.turno || "",
+          });
+        } else {
+          console.error("Horário não encontrado para o ID:", id);
+        }
+      }
+    } else {
+      setIsEditing(false);
+    }
+  }, [id, horarios]);
 
   const optionsCurso = [
     { label: "Selecione...", value: "" },
@@ -30,7 +65,7 @@ const CadastroHorario = () => {
       label: "Análise e Desenvolvimento de Sistemas",
       value: "Análise e Desenvolvimento de Sistemas",
     },
-    { label: "Design de Midias Digitais", value: "Design de Midias Digitaiss" },
+    { label: "Design de Midias Digitais", value: "Design de Midias Digitais" },
     { label: "Logistica", value: "Logistica" },
     { label: "Secretariado", value: "Secretariado" },
     { label: "Articulado Médio Superior", value: "Articulado Médio Superior" },
@@ -99,21 +134,30 @@ const CadastroHorario = () => {
     e.preventDefault();
 
     try {
-      await addHorario(horarioData);
-
-      setSuccess(true);
-      setHorarioData({
-        curso: "",
-        dia_semana: "",
-        disciplina: "",
-        docente: "",
-        sala: "",
-        horario_inicial: "",
-        horario_final: "",
-        semestre: "",
-        turno: "",
-      });
-      setTimeout(() => setSuccess(false), 3000);
+      if (isEditing) {
+        await updateHorario(parseInt(id), horarioData);
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+          navigate("/materias"); // Redireciona para a lista de horários após editar
+        }, 2000);
+      } else {
+        await addHorario(horarioData);
+        setSuccess(true);
+        setHorarioData({
+          curso: "",
+          dia_semana: "",
+          disciplina: "",
+          docente: "",
+          sala: "",
+          horario_inicial: "",
+          horario_final: "",
+          descricao: "",
+          semestre: "",
+          turno: "",
+        });
+        setTimeout(() => setSuccess(false), 3000);
+      }
     } catch (err) {
       setSuccess(false);
     }
@@ -122,7 +166,10 @@ const CadastroHorario = () => {
   return (
     <div className="flex">
       <DivSection />
-      <FormContainer title="Cadastro Disciplina" onSubmit={handleSubmit}>
+      <FormContainer
+        title={isEditing ? "Editar Disciplina" : "Cadastro Disciplina"}
+        onSubmit={handleSubmit}
+      >
         <AlertMessage type="error" message={error ? error : ""} />
 
         <AlertMessage
@@ -216,9 +263,9 @@ const CadastroHorario = () => {
             type="submit"
             disabled={loading}
             loading={loading}
-            loadingText="Registrando..."
+            loadingText={isEditing ? "Atualizando..." : "Registrando..."}
           >
-            Registrar
+            {isEditing ? "Atualizar" : "Registrar"}
           </ButtonCad>
           <NavigateButton rota="/noticias" text="Voltar" />
         </div>

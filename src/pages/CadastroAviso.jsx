@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAvisos } from "../hooks/useAvisos";
+
+import { useParams, useNavigate } from "react-router-dom";
 
 import InputCad from "../components/Form_components/InputCad";
 import ButtonCad from "../components/Form_components/ButtonCad";
@@ -10,13 +12,37 @@ import DivSection from "../components/DivSection";
 
 const CadastroAviso = () => {
   const [success, setSuccess] = useState();
+  const [isEditing, setIsEditing] = useState(false);
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [avisoData, setAvisoData] = useState({
     titulo: "",
     data: "",
     descricao: "",
     publico_destino: "",
   });
-  const { addAviso, avisos, loading, error } = useAvisos();
+  const { addAviso, updateAviso, avisos, loading, error } = useAvisos();
+
+  useEffect(() => {
+    if (id) {
+      setIsEditing(true);
+      if (avisos.length > 0) {
+        const avisosEditar = avisos.find((aviso) => aviso.id === parseInt(id));
+        if (avisosEditar) {
+          setAvisoData({
+            titulo: avisosEditar.titulo || "",
+            descricao: avisosEditar.descricao || "",
+            data_publicacao: avisosEditar.data || "",
+            data_expiracao: avisosEditar.publico_destino || "",
+          });
+        } else {
+          console.error("Aviso não encontrada para o ID:", id);
+        }
+      }
+    } else {
+      setIsEditing(false);
+    }
+  }, [id, avisos]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,16 +56,25 @@ const CadastroAviso = () => {
     e.preventDefault();
 
     try {
-      await addAviso(avisoData);
+      if (isEditing) {
+        await updateAviso(parseInt(id), avisoData);
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+          navigate("/avisos");
+        }, 2000);
+      } else {
+        await addAviso(noticiaData);
 
-      setSuccess(true);
-      setAvisoData({
-        titulo: "",
-        descricao: "",
-        data: "",
-        publico_destino: "",
-      });
-      setTimeout(() => setSuccess(false), 3000);
+        setSuccess(true);
+        setNoticiaData({
+          titulo: "",
+          data: "",
+          descricao: "",
+          publico_destino: "",
+        });
+        setTimeout(() => setSuccess(false), 3000);
+      }
     } catch (err) {
       setSuccess(false);
     }
@@ -98,9 +133,9 @@ const CadastroAviso = () => {
             type="submit"
             disabled={loading}
             loading={loading}
-            loadingText="Registrando..."
+            loadingText={isEditing ? "Atualizando..." : "Registrando..."}
           >
-            Registrar
+            {isEditing ? "Atualizar" : "Registrar"}
           </ButtonCad>
           <NavigateButton rota="/avisos" text="Voltar" />
         </div>

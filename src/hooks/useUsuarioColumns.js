@@ -19,15 +19,16 @@ export const useUsuarioColumns = () => {
                 filterFn: "includesString",
             },
             {
-                accessorKey: "role",
-                header: "Role",
-                filterFn: "includesString",
-            },
-            {
                 accessorKey: "setor",
                 header: "Setor",
                 filterFn: "includesString",
             },
+            {
+                accessorKey: "role",
+                header: "Role",
+                filterFn: "includesString",
+            },
+
         ],
         [],
     );

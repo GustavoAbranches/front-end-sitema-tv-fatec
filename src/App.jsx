@@ -85,6 +85,33 @@ function App() {
             </RequireRole>
           }
         />
+
+        {/* rotas de edição */}
+
+        <Route
+          path="/cadastro-materia/:id"
+          element={
+            <RequireRole allowedRoles={["superadmin", "admin"]}>
+              <CadastroMateria />
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/cadastro-noticia/:id"
+          element={
+            <RequireRole allowedRoles={["superadmin", "admin", "editor"]}>
+              <CadastroNoticias />
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/cadastro-avisos/:id"
+          element={
+            <RequireRole allowedRoles={["superadmin", "admin", "editor"]}>
+              <CadastroAviso />
+            </RequireRole>
+          }
+        />
       </Routes>
     </Router>
   );
