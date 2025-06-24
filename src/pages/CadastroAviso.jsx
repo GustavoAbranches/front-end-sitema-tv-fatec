@@ -32,8 +32,8 @@ const CadastroAviso = () => {
           setAvisoData({
             titulo: avisosEditar.titulo || "",
             descricao: avisosEditar.descricao || "",
-            data_publicacao: avisosEditar.data || "",
-            data_expiracao: avisosEditar.publico_destino || "",
+            data: avisosEditar.data || "",
+            publico_destino: avisosEditar.publico_destino || "",
           });
         } else {
           console.error("Aviso não encontrada para o ID:", id);
@@ -67,7 +67,7 @@ const CadastroAviso = () => {
         await addAviso(avisoData);
 
         setSuccess(true);
-        setNoticiaData({
+        setAvisoData({
           titulo: "",
           data: "",
           descricao: "",
