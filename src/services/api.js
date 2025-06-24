@@ -3,7 +3,7 @@ import axios from "axios";
 import { getToken } from "./authService";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000", //https://sistema-de-tv.onrender.com
+  baseURL: "https://sistema-de-tv.onrender.com", //http://localhost:5000
   headers: {
     "Content-Type": "application/json",
   },
