@@ -13,12 +13,16 @@ import CadastroUsuario from "./pages/CadastroUsuario";
 import CadastroNoticias from "./pages/CadastroNoticias";
 import CadastroAviso from "./pages/CadastroAviso";
 import Avisos from "./pages/Avisos";
+import NotFound from "./pages/NotFound";
+import AccessDenied from "./pages/AccessDenied";
 import { RequireRole } from "./components/RequireRole";
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="*" element={<NotFound />} />
+        <Route path="/acesso-negado" element={<AccessDenied />} />
         <Route path="/" element={<Tela />} />
         <Route path="/vinheta" element={<Vinheta />} />
         <Route path="/horario" element={<Horario />} />
@@ -30,18 +34,18 @@ function App() {
         <Route
           path="/cadastro-usuario"
           element={
-            //<RequireRole allowedRoles={["superadmin"]}>
+            <RequireRole allowedRoles={["superadmin"]}>
             <CadastroUsuario />
-            //</RequireRole>
+            </RequireRole>
           }
         />
 
         <Route
           path="/usuarios"
           element={
-            //<RequireRole allowedRoles={["superadmin"]}>
+           <RequireRole allowedRoles={["superadmin"]}>
             <Usuarios />
-            //</RequireRole>
+            </RequireRole>
           }
         />
 
@@ -112,6 +116,7 @@ function App() {
             </RequireRole>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

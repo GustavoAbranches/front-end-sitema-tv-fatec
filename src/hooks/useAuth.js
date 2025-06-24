@@ -9,13 +9,14 @@ import {
 } from "../services/authService";
 
 export function useAuth() {
+  const [authLoaded, setAuthLoaded] = useState(false);
   const [user, setUser] = useState(null);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  //Buscar usuarios se for superadmin
+  // Buscar usuários se for superadmin
   const fetchUsuarios = useCallback(async () => {
     try {
       const data = await listUsers();
@@ -40,35 +41,40 @@ export function useAuth() {
           fetchUsuarios();
         }
       }
+
+      // 🔥 sinaliza que a verificação foi feita
+      setAuthLoaded(true);
     };
 
     checkAuth();
   }, [fetchUsuarios]);
 
-
   // Função de login
-  const login = useCallback(async (email, senha) => {
-    setLoading(true);
-    setError(null);
+  const login = useCallback(
+    async (email, senha) => {
+      setLoading(true);
+      setError(null);
 
-    try {
-      const data = await loginUser(email, senha);
-      setUser(data.user);
-      setIsLoggedIn(true);
+      try {
+        const data = await loginUser(email, senha);
+        setUser(data.user);
+        setIsLoggedIn(true);
 
-      //Busca usuarios se for superadmin
-      if (data.user?.role === "superadmin") {
-        fetchUsuarios();
+        if (data.user?.role === "superadmin") {
+          fetchUsuarios();
+        }
+
+        return data;
+      } catch (err) {
+        setError(err.message);
+        throw err;
+      } finally {
+        setLoading(false);
+        setAuthLoaded(true); // marca como carregado após tentativa de login
       }
-
-      return data;
-    } catch (err) {
-      setError(err.message);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }, [fetchUsuarios]);
+    },
+    [fetchUsuarios]
+  );
 
   // Função de registro
   const register = useCallback(async (nome, email, senha, setor, role = "editor") => {
@@ -93,6 +99,7 @@ export function useAuth() {
     setIsLoggedIn(false);
     setError(null);
     setList([]);
+    setAuthLoaded(true); // marca como carregado mesmo após logout
   }, []);
 
   // Limpar erro
@@ -106,6 +113,7 @@ export function useAuth() {
     loading,
     error,
     isLoggedIn,
+    authLoaded, // 🚀 retorna authLoaded aqui
     login,
     register,
     logout,

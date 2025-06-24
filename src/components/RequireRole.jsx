@@ -1,18 +1,24 @@
 import { useAuth } from "../hooks/useAuth";
+import { Navigate } from "react-router-dom";
 
 export function RequireRole({ allowedRoles, children }) {
-  const { user, isLoggedIn } = useAuth();
+  const { user, isLoggedIn, authLoaded } = useAuth();
 
-  if (!isLoggedIn) {
+  // Aguarda o carregamento da autenticação
+  if (!authLoaded) {
     return (
-      <div className="flex justify-center items-center w-screen h-screen text-white font-bold">
-        Você precisa estar logado para acessar essa área.
+      <div className="flex items-center justify-center h-screen text-white">
+        Carregando...
       </div>
     );
   }
 
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+
   if (!user || !allowedRoles.includes(user.role)) {
-    return <div>Você não tem permissão para acessar essa área.</div>;
+    return <Navigate to="/acesso-negado" replace />;
   }
 
   return children;
