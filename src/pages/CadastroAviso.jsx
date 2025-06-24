@@ -64,7 +64,7 @@ const CadastroAviso = () => {
           navigate("/avisos");
         }, 2000);
       } else {
-        await addAviso(noticiaData);
+        await addAviso(avisoData);
 
         setSuccess(true);
         setNoticiaData({
