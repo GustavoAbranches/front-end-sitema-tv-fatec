@@ -36,7 +36,7 @@ export function useHorario() {
     try {
       const data = await putHorario(id, dadosAtualizados);
       setHorarios((prev) =>
-        prev.map((horario) => (horario.id === id ? data : horario))
+        prev.map((horario) => (horario.id === id ? data : horario)),
       );
     } catch (err) {
       setError(err.message);

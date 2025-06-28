@@ -17,12 +17,17 @@ export const loginUser = async (email, senha) => {
   } catch (error) {
     console.error("Erro no login:", error);
     throw new Error(error.response?.data?.message || "Erro na requisição");
-
   }
 };
 
 // Função para registrar usuário
-export const registerUser = async (nome, email, senha, setor, role = "editor") => {
+export const registerUser = async (
+  nome,
+  email,
+  senha,
+  setor,
+  role = "editor",
+) => {
   try {
     const response = await api.post("/auth/register", {
       nome,
@@ -68,4 +73,4 @@ export const getToken = () => {
 export const listUsers = async () => {
   const response = await api.get("/auth/usuarios");
   return response.data;
-}
+};

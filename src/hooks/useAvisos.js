@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { getAvisos, postAvisos, deleteAvisos, putAvisos } from "../services/avisoService";
+import {
+  getAvisos,
+  postAvisos,
+  deleteAvisos,
+  putAvisos,
+} from "../services/avisoService";
 
 export function useAvisos() {
   const [avisos, setAvisos] = useState([]);
@@ -31,7 +36,7 @@ export function useAvisos() {
     try {
       const data = await putAvisos(id, dadosAtualizados);
       setAvisos((prev) =>
-        prev.map((aviso) => (aviso.id === id ? data : aviso))
+        prev.map((aviso) => (aviso.id === id ? data : aviso)),
       );
     } catch (err) {
       setError(err.message);

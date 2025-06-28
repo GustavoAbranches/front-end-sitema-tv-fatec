@@ -1,4 +1,14 @@
+import { useImagemAviso } from "../../hooks/useImagemAviso"
+
 const DivImagem = () => {
+    const {imagemAviso, loading, error} = useImagemAviso();
+
+  if (loading) return <div>Carregando...</div>;
+  if (error) return <div>Erro: {error}</div>;
+
+  // Se a imagem de destaque estiver disponível, pegue a primeira
+  const imagemUrl = imagemAviso[0]?.imagem_path;
+
   return (
     <div className="relative 2xl:w-[450px] lg:w-[200px] lg:h-[200px] 2xl:h-[450px] mb-8">
       {/* Camadas coloridas no fundo */}
@@ -7,16 +17,8 @@ const DivImagem = () => {
       <div className="absolute bottom-1 right-1 w-full h-full bg-yellow-400 z-20 rounded-sm" />
 
       {/* Camada branca principal com texto */}
-      <div className="absolute top-0 left-0 w-full h-full bg-white z-30 flex items-center justify-center text-center text-gray-400 text-xl font-semibold rounded-sm">
-        <span>
-          BANNER
-          <br />
-          MÓVEL
-          <br />
-          SECUNDÁRIO
-          <br />
-          450X450
-        </span>
+      <div className="absolute top-0 left-0 w-full h-full bg-white z-30 rounded-sm">
+        <img src={imagemUrl} alt="" className="w-[450px] h-[450px]"/>
       </div>
     </div>
   );

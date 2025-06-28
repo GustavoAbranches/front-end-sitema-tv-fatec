@@ -1,5 +1,5 @@
-import { Button, Box, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Button, Box, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function NotFound() {
   const navigate = useNavigate();
@@ -8,14 +8,14 @@ export default function NotFound() {
     <Box
       className="flex flex-col justify-center items-center text-center"
       sx={{
-        backgroundColor: '#002f7a',
-        height: '100vh',
-        width: '100%',
-        color: '#ffffff',
+        backgroundColor: "#002f7a",
+        height: "100vh",
+        width: "100%",
+        color: "#ffffff",
         px: 2,
       }}
     >
-      <Typography variant="h1" sx={{ fontSize: '6rem', fontWeight: 'bold' }}>
+      <Typography variant="h1" sx={{ fontSize: "6rem", fontWeight: "bold" }}>
         404
       </Typography>
       <Typography variant="h5" className="mb-2">
@@ -26,15 +26,15 @@ export default function NotFound() {
       </Typography>
       <Button
         variant="contained"
-        onClick={() => navigate('/login')}
+        onClick={() => navigate("/login")}
         sx={{
-          backgroundColor: '#f7a600',
-          color: '#ffffff',
-          fontWeight: 'bold',
+          backgroundColor: "#f7a600",
+          color: "#ffffff",
+          fontWeight: "bold",
           paddingX: 4,
-          borderRadius: '8px',
-          '&:hover': {
-            backgroundColor: '#e38e00',
+          borderRadius: "8px",
+          "&:hover": {
+            backgroundColor: "#e38e00",
           },
         }}
       >

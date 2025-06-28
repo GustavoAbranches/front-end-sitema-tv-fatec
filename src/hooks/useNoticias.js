@@ -49,7 +49,7 @@ export function useNoticias() {
     try {
       const data = await putNoticias(id, dadosAtualizados);
       setNoticias((prev) =>
-        prev.map((noticia) => (noticia.id === id ? data : noticia))
+        prev.map((noticia) => (noticia.id === id ? data : noticia)),
       );
     } catch (err) {
       setError(err.message);

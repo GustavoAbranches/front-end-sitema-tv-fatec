@@ -35,7 +35,7 @@ function App() {
           path="/cadastro-usuario"
           element={
             <RequireRole allowedRoles={["superadmin"]}>
-            <CadastroUsuario />
+              <CadastroUsuario />
             </RequireRole>
           }
         />
@@ -43,8 +43,8 @@ function App() {
         <Route
           path="/usuarios"
           element={
-           <RequireRole allowedRoles={["superadmin"]}>
-            <Usuarios />
+            <RequireRole allowedRoles={["superadmin"]}>
+              <Usuarios />
             </RequireRole>
           }
         />
