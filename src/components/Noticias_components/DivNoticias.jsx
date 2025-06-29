@@ -1,43 +1,16 @@
-import { useNoticias } from "../../hooks/useNoticias";
 import BgImage from "../../assets/fatec-arcos.jpg";
 
-const DivNoticias = () => {
-  const { noticias, loading, error } = useNoticias();
-
-  const hoje = new Date().toISOString().split("T")[0]; // 'YYYY-MM-DD'
-
-  // Filtra as notícias que são da data de hoje
-  const noticiasDeHoje = noticias.filter(
-    (noticia) => noticia.data_publicacao === hoje,
-  );
-
-  // Pega a primeira notícia de hoje, se existir
-  const latestNoticia = noticiasDeHoje.length > 0 ? noticiasDeHoje[0] : null;
-
-  if (loading) {
+const DivNoticias = ({ noticia }) => {
+  if (!noticia) {
     return (
       <div
-        className="px-6 py-6 text-white bg-cover bg-center relative 2xl:h-[250px] lg:h-[125px] flex items-center justify-center"
+        className="px-6 py-6 text-white bg-cover bg-center relative 2xl:h-[250px] lg:h-[125px]"
         style={{ backgroundImage: `url(${BgImage})` }}
       >
         <div className="absolute inset-0 bg-primaryBlue bg-opacity-90 2xl:h-[250px] lg:h-[125px]" />
         <div className="relative z-10">
-          <p className="2xl:text-2xl lg:text-lg">Carregando notícias...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div
-        className="px-6 py-6 text-white bg-cover bg-center relative 2xl:h-[250px] lg:h-[125px] flex items-center justify-center"
-        style={{ backgroundImage: `url(${BgImage})` }}
-      >
-        <div className="absolute inset-0 bg-primaryBlue bg-opacity-90 2xl:h-[250px] lg:h-[125px]" />
-        <div className="relative z-10">
-          <p className="2xl:text-2xl lg:text-lg text-red-300">
-            Erro ao carregar notícias
+          <p className="font-bold 2xl:text-4xl lg:text-lg mb-1">
+            Nenhuma notícia hoje.
           </p>
         </div>
       </div>
@@ -51,22 +24,12 @@ const DivNoticias = () => {
     >
       <div className="absolute inset-0 bg-primaryBlue bg-opacity-90 2xl:h-[250px] lg:h-[125px]" />
       <div className="relative z-10">
-        {latestNoticia ? (
-          <>
-            <p className="font-bold 2xl:text-4xl lg:text-lg mb-1">
-              {latestNoticia.titulo}
-            </p>
-            <p className="2xl:text-2xl lg:text-lg leading-tight">
-              {latestNoticia.descricao}
-            </p>
-          </>
-        ) : (
-          <div className="flex items-center justify-center h-full">
-            <p className="2xl:text-2xl lg:text-lg text-center">
-              Nenhuma notícia para hoje
-            </p>
-          </div>
-        )}
+        <p className="font-bold 2xl:text-4xl lg:text-lg mb-1">
+          {noticia.titulo}
+        </p>
+        <p className="2xl:text-2xl lg:text-lg leading-tight">
+          {noticia.descricao}
+        </p>
       </div>
     </div>
   );
