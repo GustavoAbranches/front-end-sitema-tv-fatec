@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAvisos } from "../hooks/useAvisos";
 
 import { useParams, useNavigate } from "react-router-dom";
+import imageService from "../services/imageService";
 
 import InputCad from "../components/Form_components/InputCad";
 import ButtonCad from "../components/Form_components/ButtonCad";
@@ -9,18 +10,23 @@ import AlertMessage from "../components/Form_components/AlertMessage";
 import FormContainer from "../components/Form_components/FormContainer";
 import NavigateButton from "../components/NavigateButton";
 import DivSection from "../components/DivSection";
+import ImageInput from "../components/Form_components/ImageInput";
 
 const CadastroAviso = () => {
   const [success, setSuccess] = useState();
   const [isEditing, setIsEditing] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
+
   const [avisoData, setAvisoData] = useState({
     titulo: "",
     data: "",
     descricao: "",
+    imagem: "",
     publico_destino: "",
   });
+
+  const [imageFile, setImageFile] = useState(null);
   const { addAviso, updateAviso, avisos, loading, error } = useAvisos();
 
   useEffect(() => {
@@ -33,6 +39,7 @@ const CadastroAviso = () => {
             titulo: avisosEditar.titulo || "",
             descricao: avisosEditar.descricao || "",
             data: avisosEditar.data || "",
+            imagem: avisosEditar.imagem || "",
             publico_destino: avisosEditar.publico_destino || "",
           });
         } else {
@@ -56,23 +63,29 @@ const CadastroAviso = () => {
     e.preventDefault();
 
     try {
+      const imagemUrl = imageFile
+        ? await imageService(imageFile)
+        : avisoData.imagem;
+
       if (isEditing) {
-        await updateAviso(parseInt(id), avisoData);
+        await updateAviso(parseInt(id), { ...avisoData, imagem: imagemUrl });
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
           navigate("/avisos");
         }, 2000);
       } else {
-        await addAviso(avisoData);
+        await addAviso({ ...avisoData, imagem: imagemUrl });
 
         setSuccess(true);
         setAvisoData({
           titulo: "",
           data: "",
           descricao: "",
+          imagem: "",
           publico_destino: "",
         });
+        setImageFile(null);
         setTimeout(() => setSuccess(false), 3000);
       }
     } catch (err) {
@@ -84,7 +97,10 @@ const CadastroAviso = () => {
     <div className="flex">
       <DivSection />
       <FormContainer title="Cadastro Aviso" onSubmit={handleSubmit}>
-        <AlertMessage type="error" message={error ? error : ""} />
+        <AlertMessage
+          type="error"
+          message={error ? error.message || JSON.stringify(error) : ""}
+        />
 
         <AlertMessage
           type="success"
@@ -127,6 +143,8 @@ const CadastroAviso = () => {
           required
           disabled={loading}
         />
+
+        <ImageInput onImageSelect={setImageFile} />
 
         <div className="flex flex-row w-full">
           <ButtonCad

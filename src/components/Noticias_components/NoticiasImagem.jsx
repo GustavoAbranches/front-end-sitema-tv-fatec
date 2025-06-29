@@ -20,7 +20,7 @@ const NoticiasImagem = () => {
           <img
             src={imagemUrl}
             alt={currentNoticia.titulo}
-            className="2xl:h-[702px] 2xl:w-[1264px] lg:h-[495px] "
+            className="2xl:h-[702px] 2xl:w-[1264px] lg:h-[495px] w-full"
           />
         ) : (
           <p>Imagem não disponível</p>

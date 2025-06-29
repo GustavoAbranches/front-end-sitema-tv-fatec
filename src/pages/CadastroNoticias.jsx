@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNoticias } from "../hooks/useNoticias";
 
 import { useParams, useNavigate } from "react-router-dom";
+import imageService from "../services/imageService";
 
 import InputCad from "../components/Form_components/InputCad";
 import ButtonCad from "../components/Form_components/ButtonCad";
@@ -9,6 +10,7 @@ import AlertMessage from "../components/Form_components/AlertMessage";
 import FormContainer from "../components/Form_components/FormContainer";
 import NavigateButton from "../components/NavigateButton";
 import DivSection from "../components/DivSection";
+import ImageInput from "../components/Form_components/ImageInput";
 
 const CadastroNoticias = () => {
   const [success, setSuccess] = useState();
@@ -19,9 +21,14 @@ const CadastroNoticias = () => {
   const [noticiaData, setNoticiaData] = useState({
     titulo: "",
     descricao: "",
+    imagem: "", // campo para URL da imagem
+    urlQr: "", // link para o qrcode
     data_publicacao: "",
     data_expiracao: "",
   });
+
+  const [imageFile, setImageFile] = useState(null); // controle do arquivo
+
   const { addNoticia, updateNoticia, noticias, loading, error } = useNoticias();
 
   useEffect(() => {
@@ -35,6 +42,8 @@ const CadastroNoticias = () => {
           setNoticiaData({
             titulo: noticiasEditar.titulo || "",
             descricao: noticiasEditar.descricao || "",
+            imagem: noticiasEditar.imagem || "",
+            urlQr: noticiasEditar.urlQr || "",
             data_publicacao: noticiasEditar.data_publicacao || "",
             data_expiracao: noticiasEditar.data_expiracao || "",
           });
@@ -55,19 +64,31 @@ const CadastroNoticias = () => {
     }));
   };
 
+  // Novo handler para o input file
+  const handleFileChange = (e) => {
+    setImageFile(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      const imagemUrl = imageFile
+        ? await imageService(imageFile)
+        : noticiaData.imagem;
+
       if (isEditing) {
-        await updateNoticia(parseInt(id), noticiaData);
+        await updateNoticia(parseInt(id), {
+          ...noticiaData,
+          imagem: imagemUrl,
+        });
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
           navigate("/noticias");
         }, 2000);
       } else {
-        await addNoticia(noticiaData);
+        await addNoticia({ ...noticiaData, imagem: imagemUrl });
 
         setSuccess(true);
         setNoticiaData({
@@ -75,13 +96,18 @@ const CadastroNoticias = () => {
           descricao: "",
           data_publicacao: "",
           data_expiracao: "",
+          imagem: "",
+          urlQr: "",
         });
+        setImageFile(null);
         setTimeout(() => setSuccess(false), 3000);
       }
     } catch (err) {
       setSuccess(false);
+      console.error(err);
     }
   };
+
   return (
     <div className="flex">
       <DivSection />
@@ -115,6 +141,15 @@ const CadastroNoticias = () => {
         />
 
         <InputCad
+          label="Qr Code"
+          name="urlQr"
+          value={noticiaData.urlQr}
+          onChange={handleChange}
+          required
+          disabled={loading}
+        />
+
+        <InputCad
           type="date"
           label="Data Publicação"
           name="data_publicacao"
@@ -133,6 +168,9 @@ const CadastroNoticias = () => {
           required
           disabled={loading}
         />
+
+        {/*input para imagens */}
+        <ImageInput onImageSelect={setImageFile} />
 
         <div className="flex flex-row w-full">
           <ButtonCad

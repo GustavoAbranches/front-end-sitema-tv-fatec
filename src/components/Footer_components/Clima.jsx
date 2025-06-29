@@ -7,7 +7,7 @@ const Clima = ({ day, text }) => {
   const [erro, setErro] = useState(null);
 
   const cidade = "carapicuiba";
-  const apiKey = "9c14b65fc9c84bdcb7b191508252204";
+  const apiKey = import.meta.env.VITE_CLIMA_API;
   const urlForecast = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${cidade}&days=2`;
 
   const fetchClima = async () => {

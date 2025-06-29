@@ -5,7 +5,10 @@ const QrCodeDiv = ({ currentNoticia, className }) => {
 
   return (
     <div className={className}>
-      <QRCodeSVG value={currentNoticia.urlQr} size={128} />
+      <QRCodeSVG
+        value={currentNoticia.urlQr}
+        className="2xl:w-52 2xl:h-52 lg:w-32 lg:h-32"
+      />
     </div>
   );
 };
