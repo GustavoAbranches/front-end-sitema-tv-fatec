@@ -2,8 +2,11 @@ import DivImagem from "./BarraLateral_components/DivImagem";
 import DivAviso from "./BarraLateral_components/DivAviso";
 import LogoFatec from "../assets/fatec-logo.svg";
 import BgImage from "../assets/fatec-arcos.jpg";
+import { useAvisosAtivosHoje } from "../hooks/useAvisosAtivosHoje";
 
 export default function BarraLateral() {
+  const { currentAviso } = useAvisosAtivosHoje();
+
   return (
     <div
       style={{
@@ -14,8 +17,8 @@ export default function BarraLateral() {
     >
       <div className="absolute inset-0 bg-primaryBlue bg-opacity-90">
         <div className="flex flex-col justify-center items-center relative z-10 pt-8">
-          <DivImagem />
-          <DivAviso />
+          <DivImagem currentAviso={currentAviso} />
+          <DivAviso currentAviso={currentAviso} />
           <img src={LogoFatec} alt="Logo Fatec" className="2xl:h-52 lg:h-32" />
         </div>
       </div>
