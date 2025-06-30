@@ -22,7 +22,7 @@ const CadastroNoticias = () => {
     titulo: "",
     descricao: "",
     imagem: "", // campo para URL da imagem
-    urlQr: "", // link para o qrcode
+    urlqr: "", // link para o qrcode
     data_publicacao: "",
     data_expiracao: "",
   });
@@ -43,7 +43,7 @@ const CadastroNoticias = () => {
             titulo: noticiasEditar.titulo || "",
             descricao: noticiasEditar.descricao || "",
             imagem: noticiasEditar.imagem || "",
-            urlQr: noticiasEditar.urlQr || "",
+            urlqr: noticiasEditar.urlqr || "",
             data_publicacao: noticiasEditar.data_publicacao || "",
             data_expiracao: noticiasEditar.data_expiracao || "",
           });
@@ -97,7 +97,7 @@ const CadastroNoticias = () => {
           data_publicacao: "",
           data_expiracao: "",
           imagem: "",
-          urlQr: "",
+          urlqr: "",
         });
         setImageFile(null);
         setTimeout(() => setSuccess(false), 3000);
@@ -122,62 +122,70 @@ const CadastroNoticias = () => {
           message={success ? "Notícia registrada com sucesso!" : ""}
         />
 
-        <InputCad
-          label="Título"
-          name="titulo"
-          value={noticiaData.titulo}
-          onChange={handleChange}
-          required
-          disabled={loading}
-        />
+        <div className="flex flex-row w-full justify-start items-start">
+          <InputCad
+            label="Título"
+            name="titulo"
+            value={noticiaData.titulo}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            className="w-96 mr-10"
+          />
+          <InputCad
+            label="Descrição"
+            name="descricao"
+            value={noticiaData.descricao}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            className="w-96"
+          />
+        </div>
 
-        <InputCad
-          label="Descrição"
-          name="descricao"
-          value={noticiaData.descricao}
-          onChange={handleChange}
-          required
-          disabled={loading}
-        />
-
-        <InputCad
-          label="Qr Code"
-          name="urlQr"
-          value={noticiaData.urlQr}
-          onChange={handleChange}
-          required
-          disabled={loading}
-        />
-
-        <InputCad
-          type="date"
-          label="Data Publicação"
-          name="data_publicacao"
-          value={noticiaData.data_publicacao}
-          onChange={handleChange}
-          required
-          disabled={loading}
-        />
-
-        <InputCad
-          type="date"
-          label="Data Expiração"
-          name="data_expiracao"
-          value={noticiaData.data_expiracao}
-          onChange={handleChange}
-          required
-          disabled={loading}
-        />
+        <div className="flex flex-row">
+          <InputCad
+            label="Qr Code"
+            name="urlqr"
+            value={noticiaData.urlqr}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            className="w-96 mr-10"
+          />
+          <div className="flex flex-row justify-end items-end w-1/2">
+            <InputCad
+              type="date"
+              label="Data Publicação"
+              name="data_publicacao"
+              value={noticiaData.data_publicacao}
+              onChange={handleChange}
+              required
+              disabled={loading}
+              className="mr-10"
+            />
+            <InputCad
+              type="date"
+              label="Data Expiração"
+              name="data_expiracao"
+              value={noticiaData.data_expiracao}
+              onChange={handleChange}
+              required
+              disabled={loading}
+            />
+          </div>
+        </div>
 
         {/*input para imagens */}
         <ImageInput onImageSelect={setImageFile} />
 
-        <div className="flex flex-row w-full">
+        <div className="flex flex-row w-full justify-end items-end">
           <ButtonCad
             type="submit"
             disabled={loading}
             loading={loading}
             loadingText={isEditing ? "Atualizando..." : "Registrando..."}
+            className="mr-10"
           >
             {isEditing ? "Atualizar" : "Registrar"}
           </ButtonCad>

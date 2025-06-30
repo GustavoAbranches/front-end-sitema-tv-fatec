@@ -70,49 +70,56 @@ const CadastroUsuario = () => {
     <div className="flex">
       <DivSection />
       <FormContainer title="Cadastro Usuário" onSubmit={handleSubmit}>
-        <AlertMessage type="error" message={error ? error : ""} />
+        <div className="w-96">
+          <AlertMessage type="error" message={error ? error : ""} />
+          <AlertMessage
+            type="success"
+            message={success ? "Usuário registrado com sucesso!" : ""}
+          />
+        </div>
 
-        <AlertMessage
-          type="success"
-          message={success ? "Usuário registrado com sucesso!" : ""}
-        />
+        <div className="flex flex-row w-full justify-start items-start">
+          <InputCad
+            label="Nome"
+            name="nome"
+            value={formData.nome}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            className="w-96 mr-10"
+          />
+          <InputCad
+            label="Email"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            className="w-96"
+          />
+        </div>
 
-        <InputCad
-          label="Nome"
-          name="nome"
-          value={formData.nome}
-          onChange={handleChange}
-          required
-          disabled={loading}
-        />
-
-        <InputCad
-          label="Email"
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          disabled={loading}
-        />
-
-        <InputCad
-          label="Senha"
-          type="password"
-          name="senha"
-          value={formData.senha}
-          onChange={handleChange}
-          required
-          disabled={loading}
-        />
-
-        <InputCad
-          label="Setor"
-          name="setor"
-          value={formData.setor}
-          onChange={handleChange}
-          disabled={loading}
-        />
+        <div className="flex flex-row w-full justify-start items-start">
+          <InputCad
+            label="Senha"
+            type="password"
+            name="senha"
+            value={formData.senha}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            className="w-96 mr-10"
+          />
+          <InputCad
+            label="Setor"
+            name="setor"
+            value={formData.setor}
+            onChange={handleChange}
+            disabled={loading}
+            className="w-96"
+          />
+        </div>
 
         <SelectCad
           label="Função"
@@ -123,12 +130,13 @@ const CadastroUsuario = () => {
           disabled={loading}
         />
 
-        <div className="flex flex-row w-full">
+        <div className="flex flex-row w-full justify-end items-end">
           <ButtonCad
             type="submit"
             disabled={loading}
             loading={loading}
             loadingText="Registrando..."
+            className="mr-10"
           >
             Registrar
           </ButtonCad>

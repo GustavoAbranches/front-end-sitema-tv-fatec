@@ -8,7 +8,7 @@ const ButtonCad = ({
   className = "",
 }) => {
   return (
-    <div className="flex justify-center w-full">
+    <div className="flex">
       <button
         type={type}
         disabled={disabled || loading}

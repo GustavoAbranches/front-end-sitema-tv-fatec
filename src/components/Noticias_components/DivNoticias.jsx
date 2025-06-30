@@ -1,7 +1,7 @@
 import BgImage from "../../assets/fatec-arcos.jpg";
 
 const DivNoticias = ({ noticia }) => {
-  if (!noticia) {
+  if (!noticia || !noticia.titulo || !noticia.descricao) {
     return (
       <div
         className="px-6 py-6 text-white bg-cover bg-center relative 2xl:h-[250px] lg:h-[125px]"

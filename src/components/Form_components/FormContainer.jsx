@@ -7,7 +7,7 @@ const FormContainer = ({
 }) => {
   return (
     <div
-      className={`flex flex-col justify-center items-center h-screen w-full bg-primaryBlue text-white ${className}`}
+      className={`flex flex-col items-center h-screen w-full bg-primaryBlue text-white ${className}`}
     >
       <div className="w-full p-6">
         <h2 className="font-verdana text-2xl font-bold mb-5">{title}</h2>
@@ -15,7 +15,7 @@ const FormContainer = ({
 
       <form
         onSubmit={onSubmit}
-        className={`flex flex-col justify-around items-start h-[500px] w-[350px] ${formClassName}`}
+        className={`flex flex-col items-start px-36 justify-around h-full w-full ${formClassName}`}
       >
         {children}
       </form>

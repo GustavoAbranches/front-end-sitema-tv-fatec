@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 
 import { useAvisos } from "../../hooks/useAvisos";
 import { useTableState } from "../../hooks/useTableState";
-import { useNoticiasColumns } from "../../hooks/useNoticiasColumns";
+import { useAvisosColumns } from "../../hooks/useAvisosColumns";
 import { LoadingSpinner } from "../Table_components/LoadingSpinner";
 import { ErrorMessage } from "../Table_components/ErrorMessage";
 import { DataTable } from "../Table_components/DataTable";
@@ -18,7 +18,7 @@ const TableAvisos = () => {
   const [columnFilters, setColumnFilters] = useState([]);
 
   const navigate = useNavigate();
-  const columns = useNoticiasColumns();
+  const columns = useAvisosColumns();
 
   const handleDelete = useCallback(
     async (id) => {

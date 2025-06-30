@@ -1,7 +1,7 @@
 const DivAviso = ({ currentAviso }) => {
   if (!currentAviso) {
     return (
-      <div className="bg-mediumOrange text-center text-primaryBlue py-2 px-1">
+      <div className="bg-mediumOrange text-center text-primaryBlue py-2 px-1 2xl:text-3xl lg:text-lg font-bold">
         Não há avisos para hoje.
       </div>
     );

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-export const useHorarioColumns = () => {
+export const useAvisosColumns = () => {
   return useMemo(
     () => [
       {

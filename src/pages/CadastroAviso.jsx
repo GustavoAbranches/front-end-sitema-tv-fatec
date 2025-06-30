@@ -107,51 +107,57 @@ const CadastroAviso = () => {
           message={success ? "Aviso registrada com sucesso!" : ""}
         />
 
-        <InputCad
-          label="Título"
-          name="titulo"
-          value={avisoData.titulo}
-          onChange={handleChange}
-          required
-          disabled={loading}
-        />
+        <div className="flex flex-row w-full justify-start items-start">
+          <InputCad
+            label="Título"
+            name="titulo"
+            value={avisoData.titulo}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            className="w-96 mr-10"
+          />
+          <InputCad
+            label="Descrição"
+            name="descricao"
+            value={avisoData.descricao}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            className="w-96"
+          />
+        </div>
 
-        <InputCad
-          label="Descrição"
-          name="descricao"
-          value={avisoData.descricao}
-          onChange={handleChange}
-          required
-          disabled={loading}
-        />
-
-        <InputCad
-          type="date"
-          label="Data"
-          name="data"
-          value={avisoData.data}
-          onChange={handleChange}
-          required
-          disabled={loading}
-        />
-
-        <InputCad
-          label="Publico Destino"
-          name="publico_destino"
-          value={avisoData.publico_destino}
-          onChange={handleChange}
-          required
-          disabled={loading}
-        />
+        <div className="flex flex-row w-full justify-start items-start">
+          <InputCad
+            type="date"
+            label="Data"
+            name="data"
+            value={avisoData.data}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            className="mr-10"
+          />
+          <InputCad
+            label="Publico Destino"
+            name="publico_destino"
+            value={avisoData.publico_destino}
+            onChange={handleChange}
+            required
+            disabled={loading}
+          />
+        </div>
 
         <ImageInput onImageSelect={setImageFile} />
 
-        <div className="flex flex-row w-full">
+        <div className="flex flex-row w-full justify-end items-end">
           <ButtonCad
             type="submit"
             disabled={loading}
             loading={loading}
             loadingText={isEditing ? "Atualizando..." : "Registrando..."}
+            className="mr-10"
           >
             {isEditing ? "Atualizar" : "Registrar"}
           </ButtonCad>

@@ -16,10 +16,14 @@ export default function BarraLateral() {
       className="bg-cover bg-center relative h-full 2xl:w-[35rem] lg:w-[20rem]"
     >
       <div className="absolute inset-0 bg-primaryBlue bg-opacity-90">
-        <div className="flex flex-col justify-center items-center relative z-10 pt-8">
+        <div className="flex flex-col justify-center items-center relative z-10 pt-8 h-full pb-80">
           <DivImagem currentAviso={currentAviso} />
           <DivAviso currentAviso={currentAviso} />
-          <img src={LogoFatec} alt="Logo Fatec" className="2xl:h-52 lg:h-32" />
+          <img
+            src={LogoFatec}
+            alt="Logo Fatec"
+            className="2xl:h-52 lg:h-32 absolute inset-x-0 bottom-0 2xl:ml-28 lg:ml-14"
+          />
         </div>
       </div>
     </div>

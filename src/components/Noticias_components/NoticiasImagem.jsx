@@ -6,10 +6,6 @@ const NoticiasImagem = () => {
   const { noticiasAtivasHoje, currentIndex, currentNoticia } =
     useNoticiasAtivasHoje();
 
-  if (!currentNoticia) {
-    return <p>Nenhuma notícia ativa para hoje</p>;
-  }
-
   // Se a imagem de destaque estiver disponível, pegue a primeira
   const imagemUrl = currentNoticia?.imagem || currentNoticia?.imagem_path;
 
@@ -20,10 +16,12 @@ const NoticiasImagem = () => {
           <img
             src={imagemUrl}
             alt={currentNoticia.titulo}
-            className="2xl:h-[702px] 2xl:w-[1264px] lg:h-[495px] w-full"
+            className="2xl:h-[700px] 2xl:w-[1264px] lg:h-[494px] lg:w-[998px]"
           />
         ) : (
-          <p>Imagem não disponível</p>
+          <div className="flex justify-center items-center font-bold text-xl 2xl:h-[700px] 2xl:w-[1264px] lg:h-[494px] lg:w-[998px]">
+            <p>Imagem não disponível</p>
+          </div>
         )}
         <QrCodeDiv
           currentNoticia={currentNoticia}

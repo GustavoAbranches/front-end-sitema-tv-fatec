@@ -177,93 +177,107 @@ const CadastroHorario = () => {
           message={success ? "Matéria registrada com sucesso!" : ""}
         />
 
-        <SelectCad
-          label="Curso"
-          name="curso"
-          value={horarioData.curso}
-          onChange={handleChange}
-          options={optionsCurso}
-          disabled={loading}
-        />
+        <div className="flex flex-row w-full justify-start items-start">
+          <SelectCad
+            label="Curso"
+            name="curso"
+            value={horarioData.curso}
+            onChange={handleChange}
+            options={optionsCurso}
+            disabled={loading}
+            className="w-96 mr-10"
+          />
+          <SelectCad
+            label="Dia"
+            name="dia_semana"
+            value={horarioData.dia_semana}
+            onChange={handleChange}
+            options={optionsDia}
+            disabled={loading}
+            className="w-96"
+          />
+        </div>
 
-        <SelectCad
-          label="Dia"
-          name="dia_semana"
-          value={horarioData.dia_semana}
-          onChange={handleChange}
-          options={optionsDia}
-          disabled={loading}
-        />
+        <div className="flex flex-row w-full justify-start items-start">
+          <InputCad
+            label="Disciplina"
+            name="disciplina"
+            value={horarioData.disciplina}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            className="w-96 mr-10"
+          />
+          <InputCad
+            label="Docente"
+            name="docente"
+            value={horarioData.docente}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            className="w-96"
+          />
+        </div>
 
-        <InputCad
-          label="Disciplina"
-          name="disciplina"
-          value={horarioData.disciplina}
-          onChange={handleChange}
-          required
-          disabled={loading}
-        />
+        <div className="flex flex-row w-full justify-start items-start">
+          <InputCad
+            label="Sala"
+            name="sala"
+            value={horarioData.sala}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            className="w-1/3 mr-5"
+          />
 
-        <InputCad
-          label="Docente"
-          name="docente"
-          value={horarioData.docente}
-          onChange={handleChange}
-          required
-          disabled={loading}
-        />
+          <SelectCad
+            label="Horário inicial"
+            name="horario_inicial"
+            value={horarioData.horario_inicial}
+            onChange={handleChange}
+            options={horarioInicialOptions}
+            disabled={loading}
+            className="w-1/5 mr-5"
+          />
+          <SelectCad
+            label="Horário final"
+            name="horario_final"
+            value={horarioData.horario_final}
+            onChange={handleChange}
+            options={horarioFinalOptions}
+            disabled={loading}
+            className="w-1/5"
+          />
+        </div>
 
-        <InputCad
-          label="Sala"
-          name="sala"
-          value={horarioData.sala}
-          onChange={handleChange}
-          required
-          disabled={loading}
-        />
+        <div className="flex flex-row w-full justify-start items-start">
+          <SelectCad
+            label="Semestre"
+            name="semestre"
+            value={horarioData.semestre}
+            onChange={handleChange}
+            options={optionsSemestre}
+            disabled={loading}
+            className="w-96 mr-10"
+          />
+          <SelectCad
+            label="Turno"
+            name="turno"
+            value={horarioData.turno}
+            onChange={handleChange}
+            options={optionsTurno}
+            disabled={loading}
+            className="w-96"
+          />
+        </div>
 
-        <SelectCad
-          label="Horário inicial"
-          name="horario_inicial"
-          value={horarioData.horario_inicial}
-          onChange={handleChange}
-          options={horarioInicialOptions}
-          disabled={loading}
-        />
-
-        <SelectCad
-          label="Horário final"
-          name="horario_final"
-          value={horarioData.horario_final}
-          onChange={handleChange}
-          options={horarioFinalOptions}
-          disabled={loading}
-        />
-
-        <SelectCad
-          label="Semestre"
-          name="semestre"
-          value={horarioData.semestre}
-          onChange={handleChange}
-          options={optionsSemestre}
-          disabled={loading}
-        />
-
-        <SelectCad
-          label="Turno"
-          name="turno"
-          value={horarioData.turno}
-          onChange={handleChange}
-          options={optionsTurno}
-          disabled={loading}
-        />
-
-        <div className="flex flex-row w-full">
+        <div className="flex flex-row w-full justify-end items-end">
           <ButtonCad
             type="submit"
             disabled={loading}
             loading={loading}
             loadingText={isEditing ? "Atualizando..." : "Registrando..."}
+            className="mr-10"
           >
             {isEditing ? "Atualizar" : "Registrar"}
           </ButtonCad>
