@@ -7,7 +7,7 @@ const navegacao = (caminho) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       navigate("/vinheta", { state: { next: caminho } }); // caminho da próxima tela
-    }, 5000); // 5000ms = 5 segundos
+    }, 60000); // 1000ms = 1 segundo
 
     return () => clearTimeout(timeout);
   }, [navigate]);

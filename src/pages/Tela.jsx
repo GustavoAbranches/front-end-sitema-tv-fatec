@@ -8,7 +8,7 @@ import NoticiasImagem from "../components/Noticias_components/NoticiasImagem";
 import navegacao from "../util/navegacao";
 
 const Tela = () => {
-  // navegacao("/horario"); //Tirar comentario depois
+  navegacao("/horario"); //Tirar comentario depois
 
   return (
     <div className="flex flex-col min-h-screen">

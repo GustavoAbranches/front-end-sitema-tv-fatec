@@ -6,7 +6,7 @@ import DivSection from "../components/DivSection.jsx";
 import navegacao from "../util/navegacao.js";
 
 const Horario = () => {
-  // navegacao("/"); //Tirar comentario depois
+  navegacao("/"); //Tirar comentario depois
 
   return (
     <div className="flex flex-col min-h-screen">

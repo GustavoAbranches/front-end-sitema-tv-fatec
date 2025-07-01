@@ -211,7 +211,7 @@ const HorarioQuadro = () => {
       return "2xl:w-[790px] lg:w-[590px]";
     }
     if (colspan === 3) {
-      return "2xl:w-[1560px] lg:w-[890px]";
+      return "2xl:w-[1190px] lg:w-[890px]";
     }
     return baseWidth;
   };
