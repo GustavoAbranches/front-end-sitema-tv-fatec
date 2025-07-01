@@ -13,7 +13,6 @@ export function useNoticias() {
 
   // Função para buscar notícias
   const fetchNoticias = async () => {
-    setLoading(true);
     try {
       const data = await getNoticias();
       setNoticias(data);
@@ -27,25 +26,36 @@ export function useNoticias() {
 
   // Função para adicionar uma notícia
   const addNoticia = async (novaNoticia) => {
+    setLoading(true);
+    setError(null);
     try {
       const data = await postNoticias(novaNoticia);
       setNoticias((prev) => [...prev, data]);
     } catch (err) {
       setError(err);
+    } finally {
+      setLoading(false);
     }
   };
 
   // Função para remover uma notícia
   const removeNoticia = async (id) => {
+    setLoading(true);
+    setError(null);
     try {
       await deleteNoticias(id);
       setNoticias((prev) => prev.filter((item) => item.id !== id));
     } catch (err) {
       setError(err);
+    } finally { 
+      setLoading(false);
     }
+
   };
 
   const updateNoticia = async (id, dadosAtualizados) => {
+    setLoading(true);
+    setError(null);
     try {
       const data = await putNoticias(id, dadosAtualizados);
       setNoticias((prev) =>
@@ -53,6 +63,8 @@ export function useNoticias() {
       );
     } catch (err) {
       setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 

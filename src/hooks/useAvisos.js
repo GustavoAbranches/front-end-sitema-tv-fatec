@@ -24,15 +24,21 @@ export function useAvisos() {
 
   // Função para adicionar uma aviso
   const addAviso = async (novoAviso) => {
+    setLoading(true);
+    setError(null);
     try {
       const data = await postAvisos(novoAviso);
       setAvisos((prev) => [...prev, data]);
     } catch (err) {
       setError(err);
+    } finally {
+      setLoading(false);
     }
   };
 
   const updateAviso = async (id, dadosAtualizados) => {
+    setLoading(true);
+    setError(null);
     try {
       const data = await putAvisos(id, dadosAtualizados);
       setAvisos((prev) =>
@@ -40,11 +46,15 @@ export function useAvisos() {
       );
     } catch (err) {
       setError(err.message);
+    } finally { 
+      setLoading(false);
     }
   };
 
   // Função para remover uma notícia
   const removeAvisos = async (id) => {
+    setLoading(true);
+    setError(null);
     try {
       await deleteAvisos(id);
       setAvisos((prev) => prev.filter((item) => item.id !== id));
