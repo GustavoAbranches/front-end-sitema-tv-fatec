@@ -47,10 +47,9 @@ export function useNoticias() {
       setNoticias((prev) => prev.filter((item) => item.id !== id));
     } catch (err) {
       setError(err);
-    } finally { 
+    } finally {
       setLoading(false);
     }
-
   };
 
   const updateNoticia = async (id, dadosAtualizados) => {

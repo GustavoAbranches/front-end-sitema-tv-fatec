@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ImageUploader = ({ onImageSelect }) => {
+const ImageUploader = ({ onImageSelect, disabled = false }) => {
   const [previewUrl, setPreviewUrl] = useState(null);
 
   const handleImageChange = (e) => {
@@ -13,7 +13,7 @@ const ImageUploader = ({ onImageSelect }) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <input type="file" accept="image/*" onChange={handleImageChange} />
+      <input type="file" accept="image/*" onChange={handleImageChange} disabled={disabled}/>
 
       {previewUrl && (
         <img

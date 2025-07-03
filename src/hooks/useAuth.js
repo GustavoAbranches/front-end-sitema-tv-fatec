@@ -42,7 +42,6 @@ export function useAuth() {
         }
       }
 
-      // 🔥 sinaliza que a verificação foi feita
       setAuthLoaded(true);
     };
 
@@ -102,10 +101,10 @@ export function useAuth() {
     setIsLoggedIn(false);
     setError(null);
     setList([]);
-    setAuthLoaded(true); // marca como carregado mesmo após logout
+    setAuthLoaded(true);
   }, []);
 
-  // Limpar erro
+  // limpar erro
   const clearError = useCallback(() => {
     setError(null);
   }, []);
@@ -116,7 +115,7 @@ export function useAuth() {
     loading,
     error,
     isLoggedIn,
-    authLoaded, // 🚀 retorna authLoaded aqui
+    authLoaded,
     login,
     register,
     logout,
