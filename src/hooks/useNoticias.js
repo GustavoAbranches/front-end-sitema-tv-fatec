@@ -13,12 +13,13 @@ export function useNoticias() {
 
   // Função para buscar notícias
   const fetchNoticias = async () => {
+    setLoading(true);
+    setError(null);
     try {
       const data = await getNoticias();
       setNoticias(data);
     } catch (err) {
-      console.error("Erro na API:", err);
-      setError(err);
+      setError(err.message || "Erro ao buscar notícias");
     } finally {
       setLoading(false);
     }
@@ -32,7 +33,7 @@ export function useNoticias() {
       const data = await postNoticias(novaNoticia);
       setNoticias((prev) => [...prev, data]);
     } catch (err) {
-      setError(err);
+      setError(err.message || "Erro ao adicionar notícia");
     } finally {
       setLoading(false);
     }
@@ -46,7 +47,7 @@ export function useNoticias() {
       await deleteNoticias(id);
       setNoticias((prev) => prev.filter((item) => item.id !== id));
     } catch (err) {
-      setError(err);
+      setError(err.message || "Erro ao remover notícia");
     } finally {
       setLoading(false);
     }
@@ -61,7 +62,7 @@ export function useNoticias() {
         prev.map((noticia) => (noticia.id === id ? data : noticia)),
       );
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Erro ao atualizar notícia");
     } finally {
       setLoading(false);
     }
