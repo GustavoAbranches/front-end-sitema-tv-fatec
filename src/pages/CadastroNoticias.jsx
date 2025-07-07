@@ -153,27 +153,25 @@ const CadastroNoticias = () => {
             disabled={loading}
             className="w-96 mr-10"
           />
-          <div className="flex flex-row justify-end items-end w-1/2">
-            <InputCad
-              type="date"
-              label="Data Publicação"
-              name="data_publicacao"
-              value={noticiaData.data_publicacao}
-              onChange={handleChange}
-              required
-              disabled={loading}
-              className="mr-10"
-            />
-            <InputCad
-              type="date"
-              label="Data Expiração"
-              name="data_expiracao"
-              value={noticiaData.data_expiracao}
-              onChange={handleChange}
-              required
-              disabled={loading}
-            />
-          </div>
+          <InputCad
+            type="date"
+            label="Data Publicação"
+            name="data_publicacao"
+            value={noticiaData.data_publicacao}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            className="mr-10"
+          />
+          <InputCad
+            type="date"
+            label="Data Expiração"
+            name="data_expiracao"
+            value={noticiaData.data_expiracao}
+            onChange={handleChange}
+            required
+            disabled={loading}
+          />
         </div>
 
         {/*input para imagens */}

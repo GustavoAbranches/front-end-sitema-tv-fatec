@@ -12,14 +12,19 @@ const ImageUploader = ({ onImageSelect }) => {
   };
 
   return (
-    <div className="flex flex-col gap-2">
-      <input type="file" accept="image/*" onChange={handleImageChange} />
+    <div className="flex flex-col gap-3 w-full max-w-md">
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleImageChange}
+        className="text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-mediumOrange file:text-white hover:file:opacity-90"
+      />
 
       {previewUrl && (
         <img
           src={previewUrl}
           alt="Preview"
-          className="w-64 h-auto border rounded"
+          className="w-full max-w-xs sm:max-w-sm md:max-w-md h-auto border border-gray-300 rounded-md shadow"
         />
       )}
     </div>

@@ -22,7 +22,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="*" element={<NotFound />} />
-        <Route path="/acesso-negado" element={<AccessDenied />} />
+        {/* <Route path="/acesso-negado" element={<AccessDenied />} /> */}
         <Route path="/" element={<Tela />} />
         <Route path="/vinheta" element={<Vinheta />} />
         <Route path="/horario" element={<Horario />} />

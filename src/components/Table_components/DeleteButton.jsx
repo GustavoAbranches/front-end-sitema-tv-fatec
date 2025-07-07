@@ -8,7 +8,6 @@ export const DeleteButton = ({
   const { user } = useAuth();
 
   if (!user || user.role === "editor") {
-    // Esconde o botão para usuários com role editor
     return null;
   }
 

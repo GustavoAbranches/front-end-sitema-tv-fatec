@@ -13,6 +13,19 @@ const DivImagem = ({ currentAviso }) => {
         </div>
       </div>
     );
+
+  const baseUrl = "http://localhost:5000";
+
+  const imagemUrl = currentAviso?.imagem
+    ? currentAviso.imagem.startsWith("http")
+      ? currentAviso.imagem
+      : `${baseUrl}${currentAviso.imagem.startsWith("/") ? "" : "/"}${currentAviso.imagem}`
+    : currentAviso?.imagem_path || null;
+
+  console.log("currentAviso:", currentAviso);
+  console.log("imagemUrl:", imagemUrl);
+  console.log("URL da imagem do aviso:", imagemUrl);
+
   return (
     <div className="relative 2xl:w-[450px] lg:w-[200px] lg:h-[200px] 2xl:h-[450px] mb-8">
       {/* Fundo e imagem */}
@@ -21,7 +34,7 @@ const DivImagem = ({ currentAviso }) => {
       <div className="absolute bottom-1 right-1 w-full h-full bg-yellow-400 z-20 rounded-sm" />
       <div className="absolute top-0 left-0 w-full h-full bg-white z-30 rounded-sm">
         <img
-          src={currentAviso.imagem}
+          src={imagemUrl}
           alt={currentAviso.titulo}
           className="w-full h-full object-cover"
         />
