@@ -18,12 +18,15 @@ export function useAuth() {
 
   // Buscar usuários se for superadmin
   const fetchUsuarios = useCallback(async () => {
+    setLoading(true);
+    setError(null);
     try {
       const data = await listUsers();
       setList(data);
     } catch (err) {
-      console.error("Erro ao buscar usuários:", err);
       setError(err.message || "Erro ao buscar usuários");
+    } finally {
+      setLoading(false);
     }
   }, []);
 
@@ -42,7 +45,6 @@ export function useAuth() {
         }
       }
 
-      // 🔥 sinaliza que a verificação foi feita
       setAuthLoaded(true);
     };
 
@@ -66,7 +68,7 @@ export function useAuth() {
 
         return data;
       } catch (err) {
-        setError(err.message);
+        setError(err.message || "Erro ao fazer login");
         throw err;
       } finally {
         setLoading(false);
@@ -86,8 +88,7 @@ export function useAuth() {
         const data = await registerUser(nome, email, senha, setor, role);
         return data;
       } catch (err) {
-        setError(err.message);
-        throw err;
+        setError(err.message || "Erro ao registrar usuário");
       } finally {
         setLoading(false);
       }
@@ -102,10 +103,10 @@ export function useAuth() {
     setIsLoggedIn(false);
     setError(null);
     setList([]);
-    setAuthLoaded(true); // marca como carregado mesmo após logout
+    setAuthLoaded(true);
   }, []);
 
-  // Limpar erro
+  // limpar erro
   const clearError = useCallback(() => {
     setError(null);
   }, []);
@@ -116,7 +117,7 @@ export function useAuth() {
     loading,
     error,
     isLoggedIn,
-    authLoaded, // 🚀 retorna authLoaded aqui
+    authLoaded,
     login,
     register,
     logout,

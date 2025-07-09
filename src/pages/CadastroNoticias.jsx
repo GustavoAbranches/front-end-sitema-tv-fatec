@@ -175,7 +175,7 @@ const CadastroNoticias = () => {
         </div>
 
         {/*input para imagens */}
-        <ImageInput onImageSelect={setImageFile} />
+        <ImageInput onImageSelect={setImageFile} disabled={loading} />
 
         <div className="flex flex-row w-full justify-end items-end">
           <ButtonCad

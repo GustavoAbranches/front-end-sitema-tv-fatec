@@ -1,5 +1,6 @@
 import DivNoticias from "./DivNoticias";
 import QrCodeDiv from "./QrCodeDiv";
+import imgDefault from "../../assets/FATEC_CARAPICUIBA.png";
 import { useNoticiasAtivasHoje } from "../../hooks/useNoticiasAtivasHoje";
 
 const NoticiasImagem = () => {
@@ -24,9 +25,11 @@ const NoticiasImagem = () => {
             className="2xl:h-[700px] 2xl:w-[1264px] h-[494px] w-[998px]"
           />
         ) : (
-          <div className="flex justify-center items-center font-bold text-xl 2xl:h-[700px] 2xl:w-[1264px] h-[494px] w-[998px]">
-            <p>Imagem não disponível</p>
-          </div>
+          <img
+            src={imgDefault}
+            alt="Imagem padrão"
+            className="2xl:h-[700px] 2xl:w-[1264px] lg:h-[494px] lg:w-[998px]"
+          />
         )}
         <QrCodeDiv
           currentNoticia={currentNoticia}

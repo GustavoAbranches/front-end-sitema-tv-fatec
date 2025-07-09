@@ -8,15 +8,17 @@ import {
 
 export function useAvisos() {
   const [avisos, setAvisos] = useState([]);
-  const [loading, setLoading] = useState();
-  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const fetchAvisos = async () => {
+    setLoading(true);
+    setError(null);
     try {
       const data = await getAvisos();
       setAvisos(data);
     } catch (err) {
-      setError(err);
+      setError(err.message || "Erro ao buscar avisos");
     } finally {
       setLoading(false);
     }
@@ -30,7 +32,7 @@ export function useAvisos() {
       const data = await postAvisos(novoAviso);
       setAvisos((prev) => [...prev, data]);
     } catch (err) {
-      setError(err);
+      setError(err.message || "Erro ao adicionar aviso");
     } finally {
       setLoading(false);
     }
@@ -45,13 +47,13 @@ export function useAvisos() {
         prev.map((aviso) => (aviso.id === id ? data : aviso)),
       );
     } catch (err) {
-      setError(err.message);
-    } finally { 
+      setError(err.message || "Erro ao atualizar aviso");
+    } finally {
       setLoading(false);
     }
   };
 
-  // Função para remover uma notícia
+  // Função para remover uma aviso
   const removeAvisos = async (id) => {
     setLoading(true);
     setError(null);
@@ -59,7 +61,9 @@ export function useAvisos() {
       await deleteAvisos(id);
       setAvisos((prev) => prev.filter((item) => item.id !== id));
     } catch (err) {
-      setError(err);
+      setError(err.message || "Erro ao remover aviso");
+    } finally {
+      setLoading(false);
     }
   };
 

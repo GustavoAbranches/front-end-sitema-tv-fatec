@@ -20,9 +20,9 @@ const Login = () => {
     }));
 
     // Limpar erro quando usuário começar a digitar
-    if (error) {
-      clearError();
-    }
+    //if (error) {
+    //  clearError();
+    //}
   };
 
   const handleSubmit = async (e) => {
