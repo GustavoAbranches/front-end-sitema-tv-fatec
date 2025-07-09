@@ -6,7 +6,6 @@ const NoticiasImagem = () => {
   const { noticiasAtivasHoje, currentIndex, currentNoticia } =
     useNoticiasAtivasHoje();
 
-  // Se a imagem de destaque estiver disponível, pegue a primeira
   const baseUrl = "http://localhost:5000";
 
   const imagemUrl = currentNoticia?.imagem
@@ -16,7 +15,7 @@ const NoticiasImagem = () => {
     : currentNoticia?.imagem_path || null;
 
   return (
-    <div className="h-90% w-full">
+    <div className="h-full w-full">
       <div className="relative">
         {imagemUrl ? (
           <img
